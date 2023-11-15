@@ -1,6 +1,6 @@
 import React from "react";
 
-const Logo = (visibility) => {
+const Logo = ({ visibility }) => {
   return (
     <div className="flex drop-shadow-md gap-2">
       <svg

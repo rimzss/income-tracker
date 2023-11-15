@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 import Logo from "./logo";
 
-const LoginInput = () => {
+const LoginInput = ({ setTrans, setIsLoading }) => {
+  const [opacity, setOpacity] = useState("");
   return (
-    <div className="flex flex-col items-center w-1/2">
+    <div
+      className={`flex flex-col items-center 2xl:w-1/2 w-2/3 transition-all duration-200 ${opacity}`}
+    >
       <Logo />
-      <h2 className="text-xl font-bold text-black mt-10">Welcome Back</h2>
-      <p className="font-medium mb-7">
+      <h2 className="text-3xl font-bold text-black mt-10">Welcome Back</h2>
+      <p className="mb-7 text-xl font-light mt-3">
         Welcome back, Please enter your details
       </p>
       <div className="flex flex-col gap-4 w-full">
@@ -22,7 +25,17 @@ const LoginInput = () => {
           type="Password"
           placeholder="Password"
         />
-        <button className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500">
+        <button
+          onClick={() => {
+            setTrans("translate-x-full");
+            setOpacity("opacity-0");
+            setTimeout(() => {
+              setOpacity("opacity-0 hidden");
+              setIsLoading("block");
+            }, 400);
+          }}
+          className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500"
+        >
           Log in
         </button>
       </div>

@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 import LoginInput from "../components/login";
+import Loading from "../components/loading";
 
 const Login = () => {
+  const [trans, setTrans] = useState("");
+  const [isLoading, setIsLoading] = useState("hidden");
   return (
-    <div className="h-screen w-screen flex">
-      <div className="w-1/2 bg-white flex flex-col justify-center items-center">
-        <LoginInput />
+    <div className="h-screen w-screen flex justify-between overflow-hidden">
+      <div className="lg:w-1/2 w-3/4 bg-white flex flex-col justify-center items-center">
+        <LoginInput setTrans={setTrans} setIsLoading={setIsLoading} />
       </div>
-      <div className="w-1/2 bg-[#0166FF]"></div>
+      <Loading isLoading={isLoading} />
+      <div
+        className={`lg:w-1/2 w-1/4 bg-second transition-all ease-in-out duration-300 ${trans}`}
+      ></div>
     </div>
   );
 };
