@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import SignupInput from "../components/signup";
 import Loading from "../components/loading";
 
 const Signup = () => {
+  const router = useRouter();
   const [trans, setTrans] = useState("");
   const [isLoading, setIsLoading] = useState("hidden");
   return (

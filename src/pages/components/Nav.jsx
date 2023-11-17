@@ -12,7 +12,7 @@ const Nav = () => {
         <h3>Records</h3>
       </ul>
       <div className="flex gap-5">
-        <button className="btn rounded-3xl bg-second text-white font-light text-lg hover:bg-blue-500">
+        <button className="w-36 h-9 rounded-3xl bg-second text-white font-light text-lg hover:bg-blue-500">
           + Record
         </button>
         <div className="flex items-center gap-3">
