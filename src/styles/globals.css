@@ -21,9 +21,3 @@
     transform: rotate(360deg);
   }
 }
-.card {
-  background: url(../Noise.png),
-    lightgray 0% 0% / 90.33966660499573px 90.33966660499573px repeat;
-
-  mix-blend-mode: overlay;
-}

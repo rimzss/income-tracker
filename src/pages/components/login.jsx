@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Logo from "./logo";
 
-const LoginInput = ({ setTrans, setIsLoading }) => {
+const LoginInput = ({ setTrans, setIsLoading, goDashboard }) => {
   const [opacity, setOpacity] = useState("");
   return (
     <div
@@ -33,6 +33,7 @@ const LoginInput = ({ setTrans, setIsLoading }) => {
               setOpacity("opacity-0 hidden");
               setIsLoading("block");
             }, 400);
+            goDashboard();
           }}
           className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500"
         >

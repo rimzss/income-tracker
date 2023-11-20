@@ -8,10 +8,20 @@ const Login = () => {
   const router = useRouter();
   const [trans, setTrans] = useState("");
   const [isLoading, setIsLoading] = useState("hidden");
+
+  const goDashboard = () => {
+    setTimeout(() => {
+      router.push("../");
+    }, 5000);
+  };
   return (
     <div className="h-screen w-screen flex justify-between overflow-hidden">
       <div className="lg:w-1/2 w-3/4 bg-white flex flex-col justify-center items-center">
-        <LoginInput setTrans={setTrans} setIsLoading={setIsLoading} />
+        <LoginInput
+          setTrans={setTrans}
+          setIsLoading={setIsLoading}
+          goDashboard={goDashboard}
+        />
       </div>
       <Loading isLoading={isLoading} />
       <div

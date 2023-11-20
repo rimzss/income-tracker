@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
+import Link from "next/link";
 
 import Logo from "./logo";
 
@@ -8,8 +9,12 @@ const Nav = () => {
     <nav className="flex w-screen h-20 bg-white justify-between px-20 items-center">
       <ul className="flex gap-4 text-black">
         <Logo visibility={"hidden"} />
-        <h3 className="font-medium">Dashboard</h3>
-        <h3>Records</h3>
+        <Link href="../" onClick={() => setSelectedPage(true)}>
+          <h3 className="font-medium">Dashboard</h3>
+        </Link>
+        <Link href="../records" onClick={() => setSelectedPage(false)}>
+          <h3>Records</h3>
+        </Link>
       </ul>
       <div className="flex gap-5">
         <button className="w-36 h-9 rounded-3xl bg-second text-white font-light text-lg hover:bg-blue-500">
