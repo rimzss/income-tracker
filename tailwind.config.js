@@ -15,6 +15,7 @@ module.exports = {
       colors: {
         second: "#0166FF",
         base: "#F3F4F6",
+        customred: "#FF5733",
       },
     },
   },

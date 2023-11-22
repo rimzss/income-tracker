@@ -3,6 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import Link from "next/link";
 
 import Logo from "./logo";
+import Modal from "./modal";
 
 const Nav = () => {
   return (

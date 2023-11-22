@@ -1,6 +1,8 @@
 import React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { GoHomeFill } from "react-icons/go";
+import { PiForkKnifeFill } from "react-icons/pi";
 
 const RecordList = () => {
   const records = [
@@ -9,48 +11,56 @@ const RecordList = () => {
       amount: -1000,
       time: "14:00",
       color: "second",
+      icon: <GoHomeFill color="white" />,
     },
     {
       category: "Lending & Renting",
       amount: -1000,
       time: "14:00",
       color: "second",
+      icon: <GoHomeFill color="white" />,
     },
     {
       category: "Lending & Renting",
       amount: -1000,
       time: "14:00",
       color: "second",
+      icon: <GoHomeFill color="white" />,
     },
     {
       category: "Lending & Renting",
       amount: -1000,
       time: "14:00",
       color: "second",
+      icon: <GoHomeFill color="white" />,
     },
     {
       category: "Food & Drinks",
       amount: -1000,
       time: "14:00",
       color: "red-500",
+      icon: <PiForkKnifeFill color="white" />,
     },
     {
       category: "Food & Drinks",
       amount: -1000,
       time: "14:00",
       color: "red-500",
+      icon: <PiForkKnifeFill color="white" />,
     },
     {
       category: "Food & Drinks",
       amount: -1000,
       time: "14:00",
       color: "red-500",
+      icon: <PiForkKnifeFill color="white" />,
     },
     {
       category: "Food & Drinks",
       amount: -1000,
       time: "14:00",
       color: "red-500",
+      icon: <PiForkKnifeFill color="white" />,
     },
   ];
   const [filterStyle, setFilterStyle] = React.useState("");
@@ -99,7 +109,9 @@ const RecordList = () => {
                 <div className="flex gap-2">
                   <div
                     className={`w-12 h-12 rounded-full flex justify-center items-center bg-${record.color}`}
-                  ></div>
+                  >
+                    {record.icon}
+                  </div>
                   <div>
                     <p>{record.category}</p>
                     <p className="text-sm text-gray-400">{record.time}</p>
