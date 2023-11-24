@@ -5,7 +5,10 @@ const ModalExpense = ({
   setShowIncome,
   showExpense,
   categorys,
-  openCategoryModal,
+  categoryOpen,
+  setCategoryOpen,
+  open,
+  setOpen,
 }) => {
   return (
     <section className={`flex ${showExpense}`}>
@@ -41,7 +44,14 @@ const ModalExpense = ({
             className="dropdown-content z-[10] menu shadow bg-base-100 rounded-box w-full overflow-y-scroll flex-nowrap p-0 h-40"
           >
             <div className="p-5 text-lg border-b-[1px] cursor-pointer">
-              <button>Add Category</button>
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  setCategoryOpen(true);
+                }}
+              >
+                Add Category
+              </button>
             </div>
             {categorys.map((category) => {
               return (

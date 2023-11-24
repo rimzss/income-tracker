@@ -5,7 +5,7 @@ import Link from "next/link";
 import Logo from "./logo";
 import Modal from "./modal";
 
-const Nav = () => {
+const Nav = ({ open, setOpen }) => {
   return (
     <nav className="flex w-screen h-20 bg-white justify-between px-20 items-center">
       <ul className="flex gap-4 text-black">
@@ -18,7 +18,12 @@ const Nav = () => {
         </Link>
       </ul>
       <div className="flex gap-5">
-        <button className="w-36 h-9 rounded-3xl bg-second text-white font-light text-lg hover:bg-blue-500">
+        <button
+          onClick={() => {
+            setOpen(true);
+          }}
+          className="w-36 h-9 rounded-3xl bg-second text-white font-light text-lg hover:bg-blue-500"
+        >
           + Record
         </button>
         <div className="flex items-center gap-3">

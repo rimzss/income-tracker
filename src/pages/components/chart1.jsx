@@ -1,4 +1,5 @@
 import React from "react";
+import FilledChart from "../charts/filledlinechart";
 
 const Chart1 = () => {
   return (
@@ -6,7 +7,9 @@ const Chart1 = () => {
       <div className="flex items-center gap-2 font-bold p-4 border-b-[1px]">
         <span>Income - Expense</span>
       </div>
-      <div className="p-5 h-60"></div>
+      <div className="p-5 h-80">
+        <FilledChart />
+      </div>
     </div>
   );
 };

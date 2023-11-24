@@ -9,10 +9,10 @@ import LastRecords from "./components/LastRecords";
 import Chart1 from "./components/chart1";
 import Chart2 from "./components/chart2";
 
-export default function Home() {
+export default function Home({ open, setOpen }) {
   return (
     <main className="bg-base w-screen lg:h-screen">
-      <Nav />
+      <Nav setOpen={setOpen} open={open} />
       <article className="px-20 py-5">
         <Top />
         <div className="lg:flex gap-5 justify-center items-center">

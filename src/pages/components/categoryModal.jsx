@@ -8,8 +8,9 @@ import { FaHome } from "react-icons/fa";
 import { FaClipboardUser } from "react-icons/fa6";
 import { FaClipboardList } from "react-icons/fa";
 import { PiLadderBold } from "react-icons/pi";
+import { FaCaretDown } from "react-icons/fa";
 
-const CategoryModal = () => {
+const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
   const icons = [
     <GoHomeFill />,
     <FaHome />,
@@ -17,22 +18,33 @@ const CategoryModal = () => {
     <FaClipboardList />,
     <PiLadderBold />,
   ];
+  const colors = [];
   const [displayIcon, setDisplayIcon] = useState();
 
   return (
-    <dialog id="my_modal_2" className="modal z-10">
+    <dialog open={categoryOpen} className="modal z-10">
       <div className="modal-box p-0">
         <div className="flex justify-between border-b-[1px] p-5">
           <h3 className="text-xl font-semibold">Add Category</h3>
-          <form method="dialog">
-            <button className="text-xl">X</button>
-          </form>
+
+          <button
+            onClick={() => {
+              setCategoryOpen(false);
+            }}
+            className="text-xl"
+          >
+            X
+          </button>
         </div>
         <div className="p-5 ">
           <div className="flex items-center gap-5">
             <div className="dropdown w-1/4 ">
               <label tabIndex={0} className="btn m-1 w-full text-3xl">
-                {displayIcon}
+                {displayIcon ? displayIcon : icons[0]}
+                <FaCaretDown
+                  className="text-lg
+                "
+                />
               </label>
               <div
                 tabIndex={0}
@@ -51,6 +63,7 @@ const CategoryModal = () => {
                   );
                 })}
               </div>
+              <div></div>
             </div>
             <input
               type="text"
@@ -64,7 +77,13 @@ const CategoryModal = () => {
         </div>
       </div>
       <form method="dialog" className="modal-backdrop">
-        <button>close</button>
+        <button
+          onClick={() => {
+            setCategoryOpen(false);
+          }}
+        >
+          close
+        </button>
       </form>
     </dialog>
   );
