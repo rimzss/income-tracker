@@ -24,7 +24,6 @@ function Doughnut() {
               "rgba(22, 189, 202, 1)",
               "rgba(242, 144, 28, 1)",
             ],
-            borderWidth: 2,
           },
         ],
       },

@@ -34,25 +34,26 @@ function FilledChart() {
         ],
         datasets: [
           {
+            barThickness: 20,
             data: [
-              3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 0,
+              3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000,
             ],
             label: "Income",
-            borderColor: "rgb(109, 253, 181)",
+            borderColor: "rgb(132, 204, 22)",
             backgroundColor: "rgb(132, 204, 22)",
-            borderWidth: 1,
-            // barPercentage: 0.7,
+            borderWidth: 0,
             categoryPercentage: 0.5,
           },
           {
+            barThickness: 20,
             data: [
-              2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 0,
+              2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000,
             ],
             label: "Expense",
-            borderColor: "rgb(75, 192, 192)",
+            borderColor: "rgb(249, 115, 22)",
             backgroundColor: "rgb(249, 115, 22)",
             borderWidth: 1,
-            // barPercentage: 0.7,
+
             categoryPercentage: 0.5,
           },
         ],

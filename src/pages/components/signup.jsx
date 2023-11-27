@@ -4,6 +4,26 @@ import Link from "next/link";
 import Logo from "./logo";
 
 const SignupInput = ({ setTrans, setIsLoading }) => {
+  const [signUpData, setSignUpData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    createdAt: 2023 - 11 - 27,
+    updatedAt: 2023 - 11 - 27,
+  });
+  const addUser = async () => {
+    const { message } = await fetch("http://localhost:8008/api/signup/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpData),
+    });
+  };
+  const handleChange = (e) => {
+    console.log("INPUTING", e.target.value);
+    setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
+  };
   const [opacity, setOpacity] = useState("");
   return (
     <div className={`flex flex-col items-center w-1/2 ${opacity}`}>
@@ -16,24 +36,31 @@ const SignupInput = ({ setTrans, setIsLoading }) => {
       </p>
       <div className="flex flex-col gap-4 w-full">
         <input
+          name="name"
           className="input input-bordered bg-white"
           type="text"
           placeholder="Name"
+          onChange={() => handleChange()}
         />
         <input
+          name="email"
           className="input input-bordered bg-white"
           type="text"
           placeholder="Email"
+          onChange={handleChange}
         />
         <input
+          name="password"
           className="input input-bordered bg-white"
           type="Password"
           placeholder="Password"
+          onChange={handleChange}
         />
         <input
           className="input input-bordered bg-white"
           type="Password"
           placeholder="Re-password"
+          onChange={handleChange}
         />
         <Link href="../setup">
           <button
@@ -44,6 +71,7 @@ const SignupInput = ({ setTrans, setIsLoading }) => {
                 setOpacity("opacity-0 hidden");
                 setIsLoading("block");
               }, 400);
+              addUser();
             }}
             className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500"
           >

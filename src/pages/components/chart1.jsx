@@ -7,7 +7,7 @@ const Chart1 = () => {
       <div className="flex items-center gap-2 font-bold p-4 border-b-[1px]">
         <span>Income - Expense</span>
       </div>
-      <div className="p-5 h-80">
+      <div className="p-5 h-1/3">
         <FilledChart />
       </div>
     </div>
