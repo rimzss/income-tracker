@@ -5,6 +5,31 @@ import Logo from "./logo";
 
 const LoginInput = ({ setTrans, setIsLoading, goDashboard }) => {
   const [opacity, setOpacity] = useState("");
+  const [loginTry, setLoginTry] = useState({
+    logEmail: "",
+    logPassword: "",
+  });
+  const handleChange = (e) => {
+    console.log("WRITING", e.target.name, e.target.value);
+    setLoginTry({ ...loginTry, [e.target.name]: e.target.value });
+  };
+  const getLoginInfo = async () => {
+    try {
+      const { message } = await fetch(
+        "http://localhost:8008/auth/users/signin/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginTry),
+        }
+      );
+      goDashboard();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div
       className={`flex flex-col items-center 2xl:w-1/2 w-2/3 transition-all duration-200 ${opacity}`}
@@ -16,11 +41,15 @@ const LoginInput = ({ setTrans, setIsLoading, goDashboard }) => {
       </p>
       <div className="flex flex-col gap-4 w-full">
         <input
+          name="logEmail"
+          onChange={handleChange}
           className="input input-bordered bg-white"
           type="text"
           placeholder="Email"
         />
         <input
+          name="logPassword"
+          onChange={handleChange}
           className="input input-bordered bg-white"
           type="Password"
           placeholder="Password"
@@ -33,7 +62,7 @@ const LoginInput = ({ setTrans, setIsLoading, goDashboard }) => {
               setOpacity("opacity-0 hidden");
               setIsLoading("block");
             }, 400);
-            goDashboard();
+            getLoginInfo();
           }}
           className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500"
         >
