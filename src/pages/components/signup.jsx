@@ -3,22 +3,28 @@ import Link from "next/link";
 
 import Logo from "./logo";
 
-const SignupInput = ({ setTrans, setIsLoading }) => {
+const SignupInput = ({ setTrans, setIsLoading, goSetup }) => {
   const [signUpData, setSignUpData] = useState({
     name: "",
     email: "",
     password: "",
-    createdAt: 2023 - 11 - 27,
-    updatedAt: 2023 - 11 - 27,
   });
   const addUser = async () => {
-    const { message } = await fetch("http://localhost:8008/api/signup/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signUpData),
-    });
+    try {
+      const { message } = await fetch(
+        "http://localhost:8008/auth/users/signup/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signUpData),
+        }
+      );
+      goSetup();
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleChange = (e) => {
     console.log("INPUTING", e.target.value);
@@ -40,7 +46,7 @@ const SignupInput = ({ setTrans, setIsLoading }) => {
           className="input input-bordered bg-white"
           type="text"
           placeholder="Name"
-          onChange={() => handleChange()}
+          onChange={handleChange}
         />
         <input
           name="email"
@@ -62,22 +68,20 @@ const SignupInput = ({ setTrans, setIsLoading }) => {
           placeholder="Re-password"
           onChange={handleChange}
         />
-        <Link href="../setup">
-          <button
-            onClick={() => {
-              setTrans("translate-x-full");
-              setOpacity("opacity-0");
-              setTimeout(() => {
-                setOpacity("opacity-0 hidden");
-                setIsLoading("block");
-              }, 400);
-              addUser();
-            }}
-            className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500"
-          >
-            Sign up
-          </button>{" "}
-        </Link>
+        <button
+          onClick={() => {
+            // setTrans("translate-x-full");
+            // setTimeout(() => {
+            //   setOpacity("opacity-0");
+            //   setOpacity("opacity-0 hidden");
+            //   setIsLoading("block");
+            // }, 400);
+            addUser();
+          }}
+          className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500"
+        >
+          Sign up
+        </button>
       </div>
       <h3 className="font-medium text-black mt-10">
         Already have account?{" "}

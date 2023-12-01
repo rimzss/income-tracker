@@ -8,10 +8,19 @@ const Signup = () => {
   const router = useRouter();
   const [trans, setTrans] = useState("");
   const [isLoading, setIsLoading] = useState("hidden");
+  const goSetup = () => {
+    setTimeout(() => {
+      router.push("../setup");
+    }, 5000);
+  };
   return (
     <div className="h-screen w-screen flex">
       <div className="lg:w-1/2 w-3/4 bg-white flex flex-col justify-center items-center">
-        <SignupInput setTrans={setTrans} setIsLoading={setIsLoading} />
+        <SignupInput
+          setTrans={setTrans}
+          setIsLoading={setIsLoading}
+          goSetup={goSetup}
+        />
       </div>
       <Loading isLoading={isLoading} />
       <div

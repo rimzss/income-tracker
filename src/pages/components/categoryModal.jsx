@@ -18,7 +18,13 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
     <FaClipboardList />,
     <PiLadderBold />,
   ];
-  const colors = [];
+  const colors = [
+    "bg-second",
+    "bg-red-500",
+    "bg-green-500",
+    "bg-purple-500",
+    "bg-yellow-500",
+  ];
   const [displayIcon, setDisplayIcon] = useState();
 
   return (
@@ -62,6 +68,13 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
                     </div>
                   );
                 })}
+                <div className="p-3 flex gap-3 border-t-[1px] w-full">
+                  {colors.map((color) => {
+                    return (
+                      <div className={`w-8 h-8 rounded-full ${color}`}></div>
+                    );
+                  })}
+                </div>
               </div>
               <div></div>
             </div>
@@ -71,7 +84,7 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
               className="input input-bordered w-3/4 bg-base"
             />
           </div>
-          <button className="btn w-full rounded-3xl bg-green-500 hover:bg-green-600 mt-8">
+          <button className="btn w-full rounded-3xl bg-green-500 hover:bg-green-600 mt-8 text-white">
             Confirm
           </button>
         </div>
