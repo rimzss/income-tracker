@@ -10,10 +10,10 @@ const Nav = ({ open, setOpen }) => {
     <nav className="flex w-screen h-20 bg-white justify-between px-20 items-center">
       <ul className="flex gap-4 text-black">
         <Logo visibility={"hidden"} />
-        <Link href="../" onClick={() => setSelectedPage(true)}>
+        <Link href="../" >
           <h3 className="font-medium">Dashboard</h3>
         </Link>
-        <Link href="../records" onClick={() => setSelectedPage(false)}>
+        <Link href="../records" >
           <h3>Records</h3>
         </Link>
       </ul>

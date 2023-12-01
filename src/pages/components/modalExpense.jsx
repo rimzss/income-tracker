@@ -41,7 +41,7 @@ const ModalExpense = ({
           <select />
           <ul
             tabIndex={0}
-            className="dropdown-content z-[10] menu shadow bg-base-100 rounded-box w-full overflow-y-scroll flex-nowrap p-0 h-40"
+            className="dropdown-content z-[10] menu shadow bg-base rounded-box w-full overflow-y-scroll flex-nowrap p-0 h-40 "
           >
             <div className="p-5 text-lg border-b-[1px] cursor-pointer">
               <button

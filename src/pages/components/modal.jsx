@@ -16,8 +16,8 @@ const Modal = ({
 
   return (
     <>
-      <dialog open={open} id="my_modal_1" className="modal z-10">
-        <div className="modal-box p-0 w-2/3 max-w-6xl">
+      <dialog open={open} id="my_modal_1" className="modal z-10 bg-black bg-opacity-40">
+        <div className="modal-box p-0 w-2/3 max-w-6xl bg-white">
           <div className="flex justify-between border-b-[1px] p-5">
             <h3 className="text-xl font-semibold">Add Records</h3>
             <button

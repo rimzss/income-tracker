@@ -11,7 +11,7 @@ import Chart2 from "./components/chart2";
 
 export default function Home({ open, setOpen }) {
   return (
-    <main className="bg-base w-screen lg:h-screen">
+    <main className="bg-base w-screen">
       <Nav setOpen={setOpen} open={open} />
       <article className="px-20 py-5">
         <Top />

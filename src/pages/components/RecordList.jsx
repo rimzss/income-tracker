@@ -11,7 +11,7 @@ const RecordList = () => {
       amount: -1000,
       time: "14:00",
       color: "second",
-      icon: <GoHomeFill color="white" />,
+      icon: <GoHomeFill color="white"/>,
     },
     {
       category: "Lending & Renting",
@@ -108,7 +108,7 @@ const RecordList = () => {
               <div className="flex justify-between w-full">
                 <div className="flex gap-2">
                   <div
-                    className={`w-12 h-12 rounded-full flex justify-center items-center bg-${record.color}`}
+                    className={`w-12 h-12 rounded-full flex justify-center items-center bg-${record.color} `}
                   >
                     {record.icon}
                   </div>

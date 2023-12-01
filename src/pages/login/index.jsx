@@ -15,7 +15,7 @@ const Login = () => {
     }, 5000);
   };
   return (
-    <div className="h-screen w-screen flex justify-between overflow-hidden">
+    <div className="h-screen w-screen flex justify-between overflow-hidden bg-white">
       <div className="lg:w-1/2 w-3/4 bg-white flex flex-col justify-center items-center">
         <LoginInput
           setTrans={setTrans}
