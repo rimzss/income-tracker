@@ -4,7 +4,7 @@ import ModalIncome from "./ModalIncome";
 import CategoryModal from "./categoryModal";
 
 const Modal = ({
-  categorys,
+  categoryArr,
   openCategoryModal,
   setCategoryOpen,
   categoryOpen,
@@ -16,7 +16,11 @@ const Modal = ({
 
   return (
     <>
-      <dialog open={open} id="my_modal_1" className="modal z-10 bg-black bg-opacity-40">
+      <dialog
+        open={open}
+        id="my_modal_1"
+        className="modal z-10 bg-black bg-opacity-40"
+      >
         <div className="modal-box p-0 w-2/3 max-w-6xl bg-white">
           <div className="flex justify-between border-b-[1px] p-5">
             <h3 className="text-xl font-semibold">Add Records</h3>
@@ -33,7 +37,7 @@ const Modal = ({
             setShowExpense={setShowExpense}
             setShowIncome={setShowIncome}
             showExpense={showExpense}
-            categorys={categorys}
+            categoryArr={categoryArr}
             setCategoryOpen={setCategoryOpen}
             categoryOpen={categoryOpen}
             open={open}
@@ -43,7 +47,7 @@ const Modal = ({
             setShowExpense={setShowExpense}
             setShowIncome={setShowIncome}
             showIncome={showIncome}
-            categorys={categorys}
+            categoryArr={categoryArr}
             openCategoryModal={openCategoryModal}
             open={open}
             setOpen={setOpen}

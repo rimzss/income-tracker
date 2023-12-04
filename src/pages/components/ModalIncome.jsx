@@ -4,7 +4,7 @@ const ModalIncome = ({
   setShowExpense,
   setShowIncome,
   showIncome,
-  categorys,
+  categoryArr,
 }) => {
   return (
     <section className={`flex ${showIncome}`}>
@@ -40,10 +40,10 @@ const ModalIncome = ({
             className="dropdown-content z-[10] menu shadow bg-base-100 rounded-box w-full overflow-y-scroll flex-nowrap p-0 h-40"
           >
             <div className="p-5 text-lg border-b-[1px]">Add Category</div>
-            {categorys.map((category) => {
+            {categoryArr.map((category) => {
               return (
                 <li className="w-full p-5 text-lg">
-                  <a className="p-0">{category}</a>
+                  <a className="p-0">{category.name}</a>
                 </li>
               );
             })}

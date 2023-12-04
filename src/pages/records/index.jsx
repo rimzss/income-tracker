@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Nav from "../components/Nav";
 import RecordsMenu from "../components/RecordsMenu";
 import RecordList from "../components/RecordList";
 
 const Records = ({ open, setOpen }) => {
+  const [refresh, setRefresh] = useState(false);
+  const [categoryArr, setCategoryArr] = useState([]);
+  const getCategorys = async () => {
+    try {
+      const { categorys } = await fetch(
+        "http://localhost:8008/api/category"
+      ).then((res) => res.json());
+      setCategoryArr(categorys);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getCategorys();
+  }, [refresh]);
   const [categoryOpen, setCategoryOpen] = useState(false);
   return (
     <main className="bg-base w-screen">
@@ -15,6 +30,9 @@ const Records = ({ open, setOpen }) => {
           setOpen={setOpen}
           categoryOpen={categoryOpen}
           setCategoryOpen={setCategoryOpen}
+          categoryArr={categoryArr}
+          setRefresh={setRefresh}
+          refresh={refresh}
         />
         <RecordList />
       </article>

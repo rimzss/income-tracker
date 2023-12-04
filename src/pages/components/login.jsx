@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Logo from "./logo";
 
-const LoginInput = ({ setTrans, setIsLoading, goDashboard }) => {
+const LoginInput = ({ setTrans, setIsLoading, goDashboard, userEmail }) => {
   const [opacity, setOpacity] = useState("");
   const [loginTry, setLoginTry] = useState({
     logEmail: "",
@@ -12,6 +12,7 @@ const LoginInput = ({ setTrans, setIsLoading, goDashboard }) => {
   const handleChange = (e) => {
     console.log("WRITING", e.target.name, e.target.value);
     setLoginTry({ ...loginTry, [e.target.name]: e.target.value });
+    userEmail = loginTry.logEmail;
   };
   const getLoginInfo = async () => {
     try {

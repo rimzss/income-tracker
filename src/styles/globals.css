@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  color:black;
-}
 .loader {
   width: 48px;
   height: 48px;
@@ -25,6 +22,6 @@
   }
 }
 
-.btn{
+.btn {
   border-color: aliceblue;
 }

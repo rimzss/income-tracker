@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -9,14 +9,21 @@ import { FaClipboardUser } from "react-icons/fa6";
 import { FaClipboardList } from "react-icons/fa";
 import { PiLadderBold } from "react-icons/pi";
 import { FaCaretDown } from "react-icons/fa";
+import { RiNetflixFill } from "react-icons/ri";
 
-const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
+const CategoryModal = ({
+  categoryOpen,
+  setCategoryOpen,
+  setRefresh,
+  refresh,
+}) => {
   const icons = [
-    <GoHomeFill />,
-    <FaHome />,
-    <FaClipboardUser />,
-    <FaClipboardList />,
-    <PiLadderBold />,
+    { icon: <GoHomeFill />, name: "home1" },
+    { icon: <FaHome />, name: "home2" },
+    { icon: <FaClipboardUser />, name: "clipboardUser" },
+    { icon: <FaClipboardList />, name: "clipboardList" },
+    { icon: <PiLadderBold />, name: "ladder" },
+    { icon: <RiNetflixFill />, name: "netflix" },
   ];
   const colors = [
     "bg-second",
@@ -24,8 +31,48 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
     "bg-green-500",
     "bg-purple-500",
     "bg-yellow-500",
+    "bg-orange-500",
   ];
-  const [displayIcon, setDisplayIcon] = useState();
+
+  const [displayIcon, setDisplayIcon] = useState(<GoHomeFill />);
+  const [displayColor, setDisplayColor] = useState("bg-second");
+  const [inputValue, setInputValue] = useState("");
+
+  const [addCategory, setAddCategory] = useState({
+    catName: "",
+    catIcon: "chosen",
+    catColor: displayColor,
+    catDescription: "blank",
+  });
+
+  const handleColor = (color) => {
+    setAddCategory({ ...addCategory, catColor: color });
+  };
+  const handleIcon = (icon) => {
+    setAddCategory({ ...addCategory, catIcon: icon });
+  };
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+    setAddCategory({ ...addCategory, [e.target.name]: e.target.value });
+  };
+
+  const createCategory = async () => {
+    try {
+      const { message } = await fetch(
+        "http://localhost:8008/api/category/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(addCategory),
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <dialog open={categoryOpen} className="modal z-10">
@@ -46,7 +93,7 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
           <div className="flex items-center gap-5">
             <div className="dropdown w-1/4 ">
               <label tabIndex={0} className="btn m-1 w-full text-3xl">
-                {displayIcon ? displayIcon : icons[0]}
+                {displayIcon ? displayIcon : icons[0].icon}
                 <FaCaretDown
                   className="text-lg
                 "
@@ -60,18 +107,22 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
                   return (
                     <div
                       onClick={() => {
-                        setDisplayIcon(icon);
+                        setDisplayIcon(icon.icon);
+                        handleIcon(icon.name);
                       }}
                       className="p-3 text-3xl cursor-pointer inline"
                     >
-                      {icon}
+                      {icon.icon}
                     </div>
                   );
                 })}
                 <div className="p-3 flex gap-3 border-t-[1px] w-full">
                   {colors.map((color) => {
                     return (
-                      <div className={`w-8 h-8 rounded-full ${color}`}></div>
+                      <div
+                        onClick={() => handleColor(color)}
+                        className={`w-8 h-8 rounded-full ${color}`}
+                      ></div>
                     );
                   })}
                 </div>
@@ -79,12 +130,23 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
               <div></div>
             </div>
             <input
+              value={inputValue}
+              name="catName"
               type="text"
               placeholder="Name"
               className="input input-bordered w-3/4 bg-base"
+              onChange={handleChange}
             />
           </div>
-          <button className="btn w-full rounded-3xl bg-green-500 hover:bg-green-600 mt-8 text-white">
+          <button
+            onClick={() => {
+              createCategory();
+              setRefresh(!refresh);
+              setInputValue("");
+              setCategoryOpen(false);
+            }}
+            className="btn w-full rounded-3xl bg-green-500 hover:bg-green-600 mt-8 text-white"
+          >
             Confirm
           </button>
         </div>
@@ -92,6 +154,7 @@ const CategoryModal = ({ categoryOpen, setCategoryOpen }) => {
       <form method="dialog" className="modal-backdrop">
         <button
           onClick={() => {
+            console.log(addCategory);
             setCategoryOpen(false);
           }}
         >

@@ -9,9 +9,10 @@ import LastRecords from "./components/LastRecords";
 import Chart1 from "./components/chart1";
 import Chart2 from "./components/chart2";
 
-export default function Home({ open, setOpen }) {
+export default function Home({ open, setOpen, userEmail }) {
+  console.log("USER EMAIL IN HOME PAGE!!", userEmail);
   return (
-    <main className="bg-base w-screen">
+    <main className="bg-base w-screen lg:h-screen">
       <Nav setOpen={setOpen} open={open} />
       <article className="px-20 py-5">
         <Top />

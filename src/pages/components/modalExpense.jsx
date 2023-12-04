@@ -4,7 +4,7 @@ const ModalExpense = ({
   setShowExpense,
   setShowIncome,
   showExpense,
-  categorys,
+  categoryArr,
   categoryOpen,
   setCategoryOpen,
   open,
@@ -53,10 +53,10 @@ const ModalExpense = ({
                 Add Category
               </button>
             </div>
-            {categorys.map((category) => {
+            {categoryArr.map((category) => {
               return (
                 <li className="w-full p-5 text-lg">
-                  <a className="p-0">{category}</a>
+                  <a className="p-0">{category.name}</a>
                 </li>
               );
             })}

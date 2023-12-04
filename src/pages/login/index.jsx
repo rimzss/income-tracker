@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import LoginInput from "../components/login";
 import Loading from "../components/loading";
 
-const Login = () => {
+const Login = ({ userEmail }) => {
   const router = useRouter();
   const [trans, setTrans] = useState("");
   const [isLoading, setIsLoading] = useState("hidden");
@@ -21,6 +21,7 @@ const Login = () => {
           setTrans={setTrans}
           setIsLoading={setIsLoading}
           goDashboard={goDashboard}
+          userEmail={userEmail}
         />
       </div>
       <Loading isLoading={isLoading} />
