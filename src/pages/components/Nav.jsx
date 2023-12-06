@@ -10,10 +10,10 @@ const Nav = ({ open, setOpen }) => {
     <nav className="flex w-screen h-20 bg-white justify-between px-20 items-center">
       <ul className="flex gap-4 text-black">
         <Logo visibility={"hidden"} />
-        <Link href="../" >
+        <Link href="../">
           <h3 className="font-medium">Dashboard</h3>
         </Link>
-        <Link href="../records" >
+        <Link href="../records">
           <h3>Records</h3>
         </Link>
       </ul>
@@ -26,13 +26,13 @@ const Nav = ({ open, setOpen }) => {
         >
           + Record
         </button>
-        <div className="flex items-center gap-3">
+        <Link href="./profile" className="flex items-center gap-3">
           <Avatar />
           <figure>
             <p className="font-light text-sm leading-3">Welcome !</p>
             <p className="font-medium text-lg leading-4">Your Name</p>
           </figure>
-        </div>
+        </Link>
       </div>
     </nav>
   );

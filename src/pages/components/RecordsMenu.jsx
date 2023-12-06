@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdArrowDropright } from "react-icons/io";
 import { MdRemoveRedEye } from "react-icons/md";
 import AmountRange from "./AmountRange";
@@ -13,6 +13,7 @@ const RecordsMenu = ({
   categoryArr,
   setRefresh,
   refresh,
+  isLoaded,
 }) => {
   const openCategoryModal = () => {
     console.log("CATEGORY MODALL");
@@ -51,20 +52,21 @@ const RecordsMenu = ({
           </div>
           <div className="mt-5">
             <h3 className="font-medium text-xl mb-5">Category</h3>
-            {categoryArr.map((category) => {
-              return (
-                <div className="flex items-center justify-between my-5">
-                  <div className="flex gap-3">
-                    <button className="text-2xl">
-                      <MdRemoveRedEye color="gray" />
-                    </button>
-                    <p className="text-xl truncate">{category.name}</p>
-                  </div>
+            {isLoaded &&
+              categoryArr.map((category) => {
+                return (
+                  <div className="flex items-center justify-between my-5">
+                    <div className="flex gap-3">
+                      <button className="text-2xl">
+                        <MdRemoveRedEye color="gray" />
+                      </button>
+                      <p className="text-xl truncate">{category.name}</p>
+                    </div>
 
-                  <IoMdArrowDropright />
-                </div>
-              );
-            })}
+                    <IoMdArrowDropright />
+                  </div>
+                );
+              })}
             <p
               onClick={() => setCategoryOpen(true)}
               className="text-xl text-second cursor-pointer"

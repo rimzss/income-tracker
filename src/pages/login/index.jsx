@@ -12,7 +12,7 @@ const Login = ({ userEmail }) => {
   const goDashboard = () => {
     setTimeout(() => {
       router.push("../");
-    }, 5000);
+    }, 2000);
   };
   return (
     <div className="h-screen w-screen flex justify-between overflow-hidden bg-white">

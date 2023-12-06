@@ -25,9 +25,8 @@ const deleteCategory = async (req, res) => {
 };
 const getCategory = async (req, res) => {
   try {
-    const { userEmail } = req.body;
-    const categorys =
-      await sql`SELECT * FROM category WHERE email=${userEmail}`;
+    // const { userEmail } = req.body;
+    const categorys = await sql`SELECT * FROM category`;
     console.log(categorys);
     res.status(201).json({ message: "success", categorys });
   } catch (error) {

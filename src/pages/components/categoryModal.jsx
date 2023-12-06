@@ -10,6 +10,7 @@ import { FaClipboardList } from "react-icons/fa";
 import { PiLadderBold } from "react-icons/pi";
 import { FaCaretDown } from "react-icons/fa";
 import { RiNetflixFill } from "react-icons/ri";
+import { IoFastFood } from "react-icons/io5";
 
 const CategoryModal = ({
   categoryOpen,
@@ -24,6 +25,7 @@ const CategoryModal = ({
     { icon: <FaClipboardList />, name: "clipboardList" },
     { icon: <PiLadderBold />, name: "ladder" },
     { icon: <RiNetflixFill />, name: "netflix" },
+    { icon: <IoFastFood />, name: "fastfood" },
   ];
   const colors = [
     "bg-second",

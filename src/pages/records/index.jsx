@@ -7,19 +7,24 @@ import RecordList from "../components/RecordList";
 const Records = ({ open, setOpen }) => {
   const [refresh, setRefresh] = useState(false);
   const [categoryArr, setCategoryArr] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const getCategorys = async () => {
     try {
       const { categorys } = await fetch(
         "http://localhost:8008/api/category"
       ).then((res) => res.json());
       setCategoryArr(categorys);
+      setIsLoaded(true);
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getCategorys();
   }, [refresh]);
+
   const [categoryOpen, setCategoryOpen] = useState(false);
   return (
     <main className="bg-base w-screen">
@@ -33,6 +38,7 @@ const Records = ({ open, setOpen }) => {
           categoryArr={categoryArr}
           setRefresh={setRefresh}
           refresh={refresh}
+          isLoaded={isLoaded}
         />
         <RecordList />
       </article>

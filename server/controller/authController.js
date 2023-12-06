@@ -10,7 +10,7 @@ const signup = async (req, res) => {
     await sql`INSERT INTO users(email, name, password) VALUES(${email}, ${name}, ${hashedPassword})`;
     res.status(201).json({ message: "success" });
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({ message: "" });
   }
 };
 

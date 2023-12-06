@@ -14,6 +14,7 @@ const LoginInput = ({ setTrans, setIsLoading, goDashboard, userEmail }) => {
     setLoginTry({ ...loginTry, [e.target.name]: e.target.value });
     userEmail = loginTry.logEmail;
   };
+  const [warningMessage, setWarningMessage] = useState();
   const getLoginInfo = async () => {
     try {
       const { message } = await fetch(
@@ -25,12 +26,22 @@ const LoginInput = ({ setTrans, setIsLoading, goDashboard, userEmail }) => {
           },
           body: JSON.stringify(loginTry),
         }
-      );
-      goDashboard();
+      ).then((res) => res.json());
+      setWarningMessage(message);
+      if (message === "SUCCESS") {
+        setTrans("translate-x-full");
+        setOpacity("opacity-0");
+        setTimeout(() => {
+          setOpacity("opacity-0 hidden");
+          setIsLoading("block");
+        }, 400);
+        goDashboard();
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div
       className={`flex flex-col items-center 2xl:w-1/2 w-2/3 transition-all duration-200 ${opacity}`}
@@ -40,6 +51,7 @@ const LoginInput = ({ setTrans, setIsLoading, goDashboard, userEmail }) => {
       <p className="mb-7 text-xl font-light mt-3">
         Welcome back, Please enter your details
       </p>
+
       <div className="flex flex-col gap-4 w-full">
         <input
           name="logEmail"
@@ -55,14 +67,9 @@ const LoginInput = ({ setTrans, setIsLoading, goDashboard, userEmail }) => {
           type="Password"
           placeholder="Password"
         />
+        <p className="text-red-500">{warningMessage}</p>
         <button
           onClick={() => {
-            setTrans("translate-x-full");
-            setOpacity("opacity-0");
-            setTimeout(() => {
-              setOpacity("opacity-0 hidden");
-              setIsLoading("block");
-            }, 400);
             getLoginInfo();
           }}
           className="btn bg-second border-0 text-white h-10 w-full rounded-2xl hover:bg-blue-500"

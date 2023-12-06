@@ -53,13 +53,14 @@ const ModalExpense = ({
                 Add Category
               </button>
             </div>
-            {categoryArr.map((category) => {
-              return (
-                <li className="w-full p-5 text-lg">
-                  <a className="p-0">{category.name}</a>
-                </li>
-              );
-            })}
+            {categoryArr &&
+              categoryArr.map((category) => {
+                return (
+                  <li className="w-full p-5 text-lg">
+                    <a className="p-0">{category.name}</a>
+                  </li>
+                );
+              })}
           </ul>
         </div>
         <div className="flex w-full gap-3">
