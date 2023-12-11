@@ -8,9 +8,22 @@ import Top from "./components/top";
 import LastRecords from "./components/LastRecords";
 import Chart1 from "./components/chart1";
 import Chart2 from "./components/chart2";
+import { useContext, useEffect } from "react";
+import { testContext } from "@/context/Provider";
 
-export default function Home({ open, setOpen, userEmail }) {
-  console.log("USER EMAIL IN HOME PAGE!!", userEmail);
+export default function Home({ open, setOpen }) {
+  const { userName } = useContext(testContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (userName === "") {
+      router.push("./login");
+    }
+  }, []);
+  if (userName === "") {
+    return null;
+  }
+
   return (
     <main className="bg-base w-screen lg:h-screen">
       <Nav setOpen={setOpen} open={open} />

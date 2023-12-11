@@ -9,6 +9,8 @@ const createTable = async () => {
         name VARCHAR(50) NOT NULL,
         password TEXT NOT NULL,
         avatar_img TEXT,
+        value REAL NOT NULL,
+        unit TEXT NOT NULL,
         createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )`;

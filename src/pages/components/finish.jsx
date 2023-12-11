@@ -24,7 +24,7 @@ const Finish = ({ nextStep }) => {
         Your very first account has been created. Now continue to dashboard and
         start tracking
       </p>
-      <Link href="./" className="w-full max-w-lg">
+      <Link href="../login" className="w-full max-w-lg">
         <button
           onClick={nextStep}
           className="btn w-full rounded-3xl bg-second hover:bg-blue-400 text-white"

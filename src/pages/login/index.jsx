@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 
 import LoginInput from "../components/login";
 import Loading from "../components/loading";
+import { testContext } from "@/context/Provider";
 
-const Login = ({ userEmail }) => {
-  const router = useRouter();
-  const [trans, setTrans] = useState("");
-  const [isLoading, setIsLoading] = useState("hidden");
+const Login = () => {
+  // const [trans, setTrans] = useState("");
+  // const [isLoading, setIsLoading] = useState("hidden");
 
-  const goDashboard = () => {
-    setTimeout(() => {
-      router.push("../");
-    }, 2000);
-  };
+  const { trans, isLoading, goDashboard } = useContext(testContext);
+
   return (
     <div className="h-screen w-screen flex justify-between overflow-hidden bg-white">
       <div className="lg:w-1/2 w-3/4 bg-white flex flex-col justify-center items-center">
         <LoginInput
-          setTrans={setTrans}
-          setIsLoading={setIsLoading}
-          goDashboard={goDashboard}
-          userEmail={userEmail}
+        // setTrans={setTrans}
+        // setIsLoading={setIsLoading}
         />
       </div>
       <Loading isLoading={isLoading} />

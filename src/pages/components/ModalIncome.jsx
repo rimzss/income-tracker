@@ -79,7 +79,7 @@ const ModalIncome = ({
         />
         <h3>Note</h3>
         <textarea
-          className="textarea textarea-bordered w-full h-3/5 bg-base mt-5"
+          className="textarea textarea-bordered w-full h-3/5 bg-base mt-5 resize-none"
           placeholder="Write Here"
         ></textarea>
       </div>

@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 
 const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, value, unit } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     console.log(req.body);
-    await sql`INSERT INTO users(email, name, password) VALUES(${email}, ${name}, ${hashedPassword})`;
+    await sql`INSERT INTO users(email, name, password, value, unit) VALUES(${email}, ${name}, ${hashedPassword}, ${value}, ${unit})`;
     res.status(201).json({ message: "success" });
   } catch (error) {
     res.status(500).json({ message: "" });
@@ -34,4 +34,15 @@ const signin = async (req, res) => {
   }
 };
 
-module.exports = { signup, signin };
+const getUser = async (req, res) => {
+  try {
+    const { logEmail } = req.body;
+    console.log(logEmail);
+    const userInfo = await sql`SELECT * FROM users WHERE email=${logEmail}`;
+    return res.status(201).json({ message: "SUCCESS", userInfo });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong", Error: error });
+  }
+};
+
+module.exports = { signup, signin, getUser };

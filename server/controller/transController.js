@@ -23,7 +23,7 @@ const createTrans = async (req, res) => {
 const getTrans = async (req, res) => {
   try {
     const { userId } = req.body;
-    const trans = await sql`SELECT * FROM category`;
+    const trans = await sql`SELECT * FROM transaction`;
     res.status(201).json({ message: "success", trans });
     console.log("GET TRANS SUCCESS");
   } catch (error) {

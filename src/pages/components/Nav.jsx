@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Link from "next/link";
 
 import Logo from "./logo";
 import Modal from "./modal";
+import { testContext } from "@/context/Provider";
 
 const Nav = ({ open, setOpen }) => {
+  const { userName } = useContext(testContext);
   return (
     <nav className="flex w-screen h-20 bg-white justify-between px-20 items-center">
       <ul className="flex gap-4 text-black">
@@ -30,7 +32,7 @@ const Nav = ({ open, setOpen }) => {
           <Avatar />
           <figure>
             <p className="font-light text-sm leading-3">Welcome !</p>
-            <p className="font-medium text-lg leading-4">Your Name</p>
+            <p className="font-medium text-lg leading-4">{userName}</p>
           </figure>
         </Link>
       </div>

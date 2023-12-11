@@ -1,35 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 
 import Logo from "./logo";
+import { testContext } from "@/context/Provider";
 
-const SignupInput = ({ setTrans, setIsLoading, goSetup }) => {
-  const [signUpData, setSignUpData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const addUser = async () => {
-    try {
-      const { message } = await fetch(
-        "http://localhost:8008/auth/users/signup/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(signUpData),
-        }
-      );
-      goSetup();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleChange = (e) => {
-    console.log("INPUTING", e.target.value);
-    setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
-  };
+const SignupInput = ({ setIsLoading, goSetup }) => {
+  // const [signUpData, setSignUpData] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   value: 0,
+  //   unit: 0,
+  // });
+  // const addUser = async () => {
+  //   try {
+  //     const { message } = await fetch(
+  //       "http://localhost:8008/auth/users/signup/",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(signUpData),
+  //       }
+  //     );
+  //     goSetup();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // const handleChange = (e) => {
+  //   console.log("INPUTING", e.target.value);
+  //   setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
+  // };
+  const { handleChangeSignUp, addUser } = useContext(testContext);
   const [opacity, setOpacity] = useState("");
   return (
     <div className={`flex flex-col items-center w-1/2 ${opacity}`}>
@@ -46,27 +50,27 @@ const SignupInput = ({ setTrans, setIsLoading, goSetup }) => {
           className="input input-bordered bg-white"
           type="text"
           placeholder="Name"
-          onChange={handleChange}
+          onChange={handleChangeSignUp}
         />
         <input
           name="email"
           className="input input-bordered bg-white"
           type="text"
           placeholder="Email"
-          onChange={handleChange}
+          onChange={handleChangeSignUp}
         />
         <input
           name="password"
           className="input input-bordered bg-white"
           type="Password"
           placeholder="Password"
-          onChange={handleChange}
+          onChange={handleChangeSignUp}
         />
         <input
           className="input input-bordered bg-white"
           type="Password"
           placeholder="Re-password"
-          onChange={handleChange}
+          onChange={handleChangeSignUp}
         />
         <button
           onClick={() => {

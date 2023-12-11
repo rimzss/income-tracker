@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Shape from "./shape";
 import Logo from "./logo";
 import LogoWhite from "./LogoWhite";
+import { testContext } from "@/context/Provider";
 
 const Top = () => {
+  const { userCash } = useContext(testContext);
   return (
     <section className="flex flex-col lg:flex-row gap-5 items-center justify-center mt-10">
       <div className=" relative lg:w-1/3  w-full lg:h-64 rounded-2xl bg-second bg-[url('../Noise.png')] p-10 flex flex-col justify-between">
@@ -12,7 +14,7 @@ const Top = () => {
         <div className="flex justify-between items-center">
           <div>
             <p className=" text-gray-400 text-xl">cash</p>
-            <p className="font-medium text-3xl text-white">10,000,00</p>
+            <p className="font-medium text-3xl text-white">{userCash}</p>
           </div>
 
           <svg
