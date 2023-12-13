@@ -1,4 +1,5 @@
-import React from "react";
+import { testContext } from "@/context/Provider";
+import React, { useContext } from "react";
 
 const ModalIncome = ({
   setShowExpense,
@@ -6,6 +7,12 @@ const ModalIncome = ({
   showIncome,
   categoryArr,
 }) => {
+  const {
+    addRecord,
+    handleChangeRecords,
+    transactionRecord,
+    setTransactionRecord,
+  } = useContext(testContext);
   return (
     <section className={`flex ${showIncome}`}>
       <div className="w-1/2 p-5">
@@ -26,6 +33,8 @@ const ModalIncome = ({
         <div className="relative my-5">
           <p className="absolute top-1 left-6">Amount</p>
           <input
+            onChange={handleChangeRecords}
+            name="amount"
             type="text"
             placeholder="₮ 000.00"
             className="input input-bordered input-lg w-full bg-base pt-4"
@@ -44,7 +53,15 @@ const ModalIncome = ({
               categoryArr.map((category) => {
                 return (
                   <li className="w-full p-5 text-lg">
-                    <a className="p-0">{category.name}</a>
+                    <a
+                      onClick={() => {
+                        console.log("SELECTED CATEGORY", category.id);
+                        transactionRecord.category_id = category.id;
+                      }}
+                      className="p-0"
+                    >
+                      {category.name}
+                    </a>
                   </li>
                 );
               })}
@@ -66,19 +83,28 @@ const ModalIncome = ({
             />
           </div>
         </div>
-        <button className="btn rounded-3xl w-full bg-green-500 text-white mt-8">
+        <button
+          onClick={() => {
+            addRecord();
+          }}
+          className="btn rounded-3xl w-full bg-green-500 text-white mt-8"
+        >
           Add Record
         </button>
       </div>
       <div className="p-5 w-1/2">
-        <h3>Payee</h3>
+        <h3>Name</h3>
         <input
+          onChange={handleChangeRecords}
+          name="name"
           type="text"
           placeholder="Write Here"
           className="input input-bordered w-full bg-base mt-2 mb-6"
         />
         <h3>Note</h3>
         <textarea
+          onChange={handleChangeRecords}
+          name="description"
           className="textarea textarea-bordered w-full h-3/5 bg-base mt-5 resize-none"
           placeholder="Write Here"
         ></textarea>

@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useContext, useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -11,6 +11,7 @@ import { PiLadderBold } from "react-icons/pi";
 import { FaCaretDown } from "react-icons/fa";
 import { RiNetflixFill } from "react-icons/ri";
 import { IoFastFood } from "react-icons/io5";
+import { testContext } from "@/context/Provider";
 
 const CategoryModal = ({
   categoryOpen,
@@ -18,6 +19,7 @@ const CategoryModal = ({
   setRefresh,
   refresh,
 }) => {
+  const { userId } = useContext(testContext);
   const icons = [
     { icon: <GoHomeFill />, name: "home1" },
     { icon: <FaHome />, name: "home2" },
@@ -45,6 +47,7 @@ const CategoryModal = ({
     catIcon: "chosen",
     catColor: displayColor,
     catDescription: "blank",
+    userId: userId,
   });
 
   const handleColor = (color) => {
@@ -71,6 +74,7 @@ const CategoryModal = ({
           body: JSON.stringify(addCategory),
         }
       );
+      setRefresh(!refresh);
     } catch (error) {
       console.log(error);
     }
@@ -143,7 +147,7 @@ const CategoryModal = ({
           <button
             onClick={() => {
               createCategory();
-              setRefresh(!refresh);
+
               setInputValue("");
               setCategoryOpen(false);
             }}

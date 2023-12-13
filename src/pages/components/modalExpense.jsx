@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { testContext } from "@/context/Provider";
+import React, { useContext } from "react";
 
 const ModalExpense = ({
   setShowExpense,
@@ -10,6 +11,12 @@ const ModalExpense = ({
   open,
   setOpen,
 }) => {
+  const {
+    addRecord,
+    handleChangeRecords,
+    transactionRecord,
+    setTransactionRecord,
+  } = useContext(testContext);
   return (
     <section className={`flex ${showExpense}`}>
       <div className="w-1/2 p-5">
@@ -21,6 +28,7 @@ const ModalExpense = ({
             onClick={() => {
               setShowExpense("hidden");
               setShowIncome("");
+              transactionRecord.transaction_type = "INC";
             }}
             className="btn w-1/2 rounded-3xl hover:bg-green-400 hover:text-white"
           >
@@ -30,7 +38,9 @@ const ModalExpense = ({
         <div className="relative my-5">
           <p className="absolute top-1 left-6">Amount</p>
           <input
-            type="text"
+            name="amount"
+            onChange={handleChangeRecords}
+            type="number"
             placeholder="₮ 000.00"
             className="input input-bordered input-lg w-full bg-base pt-4"
           />
@@ -57,7 +67,14 @@ const ModalExpense = ({
               categoryArr.map((category) => {
                 return (
                   <li className="w-full p-5 text-lg">
-                    <a className="p-0">{category.name}</a>
+                    <a
+                      onClick={() => {
+                        transactionRecord.category_id = category.id;
+                      }}
+                      className="p-0"
+                    >
+                      {category.name}
+                    </a>
                   </li>
                 );
               })}
@@ -79,19 +96,29 @@ const ModalExpense = ({
             />
           </div>
         </div>
-        <button className="btn rounded-3xl w-full bg-second text-white mt-8">
+        <button
+          onClick={() => {
+            addRecord();
+            setOpen(false);
+          }}
+          className="btn rounded-3xl w-full bg-second text-white mt-8"
+        >
           Add Record
         </button>
       </div>
       <div className="p-5 w-1/2">
         <h3>Payee</h3>
         <input
+          name="name"
+          onChange={handleChangeRecords}
           type="text"
           placeholder="Write Here"
           className="input input-bordered w-full bg-base mt-2 mb-6"
         />
         <h3>Note</h3>
         <textarea
+          name="description"
+          onChange={handleChangeRecords}
           className="textarea textarea-bordered w-full h-3/5 bg-base mt-5 resize-none"
           placeholder="Write Here"
         ></textarea>

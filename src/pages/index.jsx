@@ -12,7 +12,7 @@ import { useContext, useEffect } from "react";
 import { testContext } from "@/context/Provider";
 
 export default function Home({ open, setOpen }) {
-  const { userName } = useContext(testContext);
+  const { userName, userId } = useContext(testContext);
   const router = useRouter();
 
   useEffect(() => {

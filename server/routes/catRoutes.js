@@ -9,7 +9,7 @@ const router = Router();
 
 router.route("/category/create").post(createCategory);
 router.route("/category/delete").delete(deleteCategory);
-router.route("/category").get(getCategory);
+router.route("/category").post(getCategory);
 router.route("/transition").get();
 
 module.exports = router;

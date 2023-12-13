@@ -1,29 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Nav from "../components/Nav";
 import RecordsMenu from "../components/RecordsMenu";
 import RecordList from "../components/RecordList";
+import { testContext } from "@/context/Provider";
+import { useRouter } from "next/router";
 
 const Records = ({ open, setOpen }) => {
-  const [refresh, setRefresh] = useState(false);
-  const [categoryArr, setCategoryArr] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const getCategorys = async () => {
-    try {
-      const { categorys } = await fetch(
-        "http://localhost:8008/api/category"
-      ).then((res) => res.json());
-      setCategoryArr(categorys);
-      setIsLoaded(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    categoryArr,
+    getCategorys,
+    refresh,
+    setRefresh,
+    isLoaded,
+    userName,
+    userId,
+  } = useContext(testContext);
 
   useEffect(() => {
     getCategorys();
   }, [refresh]);
+
+  const router = useRouter();
+  useEffect(() => {
+    if (userName === "") {
+      router.push("./login");
+    }
+  }, []);
+  if (userName === "") {
+    return null;
+  }
 
   const [categoryOpen, setCategoryOpen] = useState(false);
   return (
