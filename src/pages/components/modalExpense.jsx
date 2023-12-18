@@ -1,4 +1,5 @@
 import { testContext } from "@/context/Provider";
+import { transContext } from "@/context/TransProvider";
 import React, { useContext } from "react";
 
 const ModalExpense = ({
@@ -16,7 +17,7 @@ const ModalExpense = ({
     handleChangeRecords,
     transactionRecord,
     setTransactionRecord,
-  } = useContext(testContext);
+  } = useContext(transContext);
   return (
     <section className={`flex ${showExpense}`}>
       <div className="w-1/2 p-5">

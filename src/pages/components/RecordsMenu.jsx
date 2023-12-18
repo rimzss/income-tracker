@@ -53,7 +53,7 @@ const RecordsMenu = ({
           <div className="mt-5">
             <h3 className="font-medium text-xl mb-5">Category</h3>
             {isLoaded &&
-              categoryArr.map((category) => {
+              categoryArr?.map((category) => {
                 return (
                   <div className="flex items-center justify-between my-5">
                     <div className="flex gap-3">

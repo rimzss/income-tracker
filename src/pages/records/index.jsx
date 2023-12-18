@@ -5,17 +5,13 @@ import RecordsMenu from "../components/RecordsMenu";
 import RecordList from "../components/RecordList";
 import { testContext } from "@/context/Provider";
 import { useRouter } from "next/router";
+import { catContext } from "@/context/CatProvider";
 
 const Records = ({ open, setOpen }) => {
-  const {
-    categoryArr,
-    getCategorys,
-    refresh,
-    setRefresh,
-    isLoaded,
-    userName,
-    userId,
-  } = useContext(testContext);
+  const { userName, userId } = useContext(testContext);
+
+  const { categoryArr, getCategorys, refresh, setRefresh, isLoaded } =
+    useContext(catContext);
 
   useEffect(() => {
     getCategorys();

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import { testContext } from "@/context/Provider";
+import { setContext } from "@/context/setupProvider";
 
 const Finish = ({ nextStep }) => {
-  const { editUser } = useContext(testContext);
+  const { editUser } = useContext(setContext);
   return (
     <div className="flex flex-col justify-center items-center w-1/2 gap-10 mt-40">
       <div className=" w-12 h-12 bg-second rounded-full flex justify-center items-center">

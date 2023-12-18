@@ -10,9 +10,11 @@ import Chart1 from "./components/chart1";
 import Chart2 from "./components/chart2";
 import { useContext, useEffect } from "react";
 import { testContext } from "@/context/Provider";
+import { transContext } from "@/context/TransProvider";
 
 export default function Home({ open, setOpen }) {
   const { userName, userId } = useContext(testContext);
+  const { sumTransGet, sumTrans } = useContext(transContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -24,6 +26,9 @@ export default function Home({ open, setOpen }) {
     return null;
   }
 
+  useEffect(() => {
+    sumTransGet();
+  }, []);
   return (
     <main className="bg-base w-screen lg:h-screen">
       <Nav setOpen={setOpen} open={open} />

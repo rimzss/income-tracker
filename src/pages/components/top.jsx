@@ -4,9 +4,11 @@ import Shape from "./shape";
 import Logo from "./logo";
 import LogoWhite from "./LogoWhite";
 import { testContext } from "@/context/Provider";
+import { transContext } from "@/context/TransProvider";
 
 const Top = () => {
   const { userCash } = useContext(testContext);
+  const { sumTrans } = useContext(transContext);
   return (
     <section className="flex flex-col lg:flex-row gap-5 items-center justify-center mt-10">
       <div className=" relative lg:w-1/3  w-full lg:h-64 rounded-2xl bg-second bg-[url('../Noise.png')] p-10 flex flex-col justify-between">
@@ -57,8 +59,10 @@ const Top = () => {
           <span>Your Income</span>
         </div>
         <div className="p-5 flex lg:block justify-between">
-          <div className="tooltip" data-tip="1,200,000 ₮">
-            <h2 className="text-5xl font-medium truncate">1,200,000 ₮</h2>
+          <div className="tooltip" data-tip={sumTrans[0]?.sum}>
+            <h2 className="text-5xl font-medium truncate">
+              {sumTrans[0]?.sum}
+            </h2>
           </div>
 
           <p className="font-light text-gray-400 lg:my-5">Your Income Amount</p>
@@ -93,8 +97,10 @@ const Top = () => {
           <span>Total Expenses</span>
         </div>
         <div className="p-5 flex lg:block justify-between">
-          <div className="tooltip" data-tip="-1,200,000 ₮">
-            <h2 className="text-5xl font-medium truncate">-1,200,000 ₮</h2>
+          <div className="tooltip" data-tip={sumTrans[1]?.sum}>
+            <h2 className="text-5xl font-medium truncate">
+              -{sumTrans[1]?.sum}
+            </h2>
           </div>
           <p className="font-light text-gray-400 my-5">Your Expense Amount</p>
           <div className="flex items-center gap-2 text-lg">

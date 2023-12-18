@@ -1,8 +1,9 @@
 import { testContext } from "@/context/Provider";
+import { setContext } from "@/context/setupProvider";
 import React, { useContext } from "react";
 
 const Currency = ({ nextStep }) => {
-  const { handleChangeEdit } = useContext(testContext);
+  const { handleChangeEdit } = useContext(setContext);
 
   return (
     <div className="flex flex-col justify-center items-center w-1/2 gap-10 mt-40">

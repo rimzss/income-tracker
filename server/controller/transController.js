@@ -33,12 +33,14 @@ const getTrans = async (req, res) => {
   }
 };
 
-const getTransTotalIncome = async (req, res) => {
+const getTransSum = async (req, res) => {
   try {
     const { userId } = req.body;
-    const trans =
-      await sql`SELECT * FROM transaction WHERE user_id=${userId} transaction_type='INC'`;
-    res.status(201).json({ message: "success", trans });
+    console.log("GET SUM IS WORKING", userId);
+
+    const sum =
+      await sql`SELECT transaction_type, SUM(amount) FROM transaction WHERE user_id=${userId} GROUP BY transaction_type`;
+    res.status(201).json({ message: "success", sum });
     console.log("GET TRANS SUCCESS");
   } catch (error) {
     console.log("GET TRANS FAILED", error);
@@ -46,4 +48,4 @@ const getTransTotalIncome = async (req, res) => {
   }
 };
 
-module.exports = { createTrans, getTrans };
+module.exports = { createTrans, getTrans, getTransSum };
