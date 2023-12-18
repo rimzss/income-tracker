@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
+import { testContext } from "@/context/Provider";
 
 const Finish = ({ nextStep }) => {
+  const { editUser } = useContext(testContext);
   return (
     <div className="flex flex-col justify-center items-center w-1/2 gap-10 mt-40">
       <div className=" w-12 h-12 bg-second rounded-full flex justify-center items-center">
@@ -26,7 +28,7 @@ const Finish = ({ nextStep }) => {
       </p>
       <Link href="../login" className="w-full max-w-lg">
         <button
-          onClick={nextStep}
+          onClick={editUser}
           className="btn w-full rounded-3xl bg-second hover:bg-blue-400 text-white"
         >
           Go to Dashboard

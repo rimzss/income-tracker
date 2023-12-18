@@ -1,6 +1,9 @@
-import React from "react";
+import { testContext } from "@/context/Provider";
+import React, { useContext } from "react";
 
 const Currency = ({ nextStep }) => {
+  const { handleChangeEdit } = useContext(testContext);
+
   return (
     <div className="flex flex-col justify-center items-center w-1/2 gap-10 mt-40">
       <div className=" w-12 h-12 bg-second rounded-full flex justify-center items-center">
@@ -19,10 +22,14 @@ const Currency = ({ nextStep }) => {
       </div>
       <h3 className="text-3xl font-medium">Select base currency</h3>
       <div>
-        <select className="select select-bordered w-full max-w-lg bg-base font-bold text-lg">
-          <option>MNT - Mongolian Tugrik</option>
-          <option>USD - US Dollars</option>
-          <option>JPY - Japanese Yen</option>
+        <select
+          name="unit"
+          onChange={handleChangeEdit}
+          className="select select-bordered w-full max-w-lg bg-base font-bold text-lg"
+        >
+          <option value={"MNT"}>MNT - Mongolian Tugrik</option>
+          <option value={"USD"}>USD - US Dollars</option>
+          <option value={"JPY"}>JPY - Japanese Yen</option>
         </select>
         <p className="max-w-lg text-stone-400 mt-4">
           Your base currency should be the one you use most often. All

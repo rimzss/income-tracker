@@ -1,6 +1,8 @@
-import React from "react";
+import { testContext } from "@/context/Provider";
+import React, { useContext } from "react";
 
 const Cash = ({ nextStep }) => {
+  const { handleChangeEdit } = useContext(testContext);
   return (
     <div className="flex flex-col justify-center items-center w-1/2 gap-10 mt-40">
       <div className=" w-12 h-12 bg-second rounded-full flex justify-center items-center">
@@ -20,6 +22,8 @@ const Cash = ({ nextStep }) => {
       <h3 className="text-3xl font-medium">Set up your cash Balance</h3>
       <div className="w-full text-center">
         <input
+          name="value"
+          onChange={handleChangeEdit}
           className="input input-bordered w-full max-w-lg bg-base"
           type="text"
           placeholder="Balance"

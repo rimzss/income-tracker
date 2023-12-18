@@ -86,7 +86,7 @@ const Provider = ({ children }) => {
   };
   const addUser = async () => {
     try {
-      const { message } = await fetch(
+      const { id } = await fetch(
         "http://localhost:8008/auth/users/signup/",
         {
           method: "POST",
@@ -95,12 +95,38 @@ const Provider = ({ children }) => {
           },
           body: JSON.stringify(signUpData),
         }
-      );
+      ).then((res) => res.json());
+      console.log("ID!!!!!", id)
+      setUserId(id)
       goSetup();
     } catch (error) {
       console.log(error);
     }
   };
+
+ let [setupObject, setSetupObject] = useState({unit:"",value:"", id:""})
+ const handleChangeEdit = (e) => {
+  console.log(e.target.value)
+  setSetupObject({ ...setupObject, [e.target.name]: e.target.value });
+};
+
+const editUser = async ()=>{
+  console.log(userId)
+  setupObject.id=userId
+  try{
+    console.log(setupObject)
+    const {message} = await fetch("http://localhost:8008/auth/users/edit/",{
+      method:"PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },body: JSON.stringify(setupObject),
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
+
+
   const handleChangeSignUp = (e) => {
     console.log("INPUTING", e.target.value);
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
@@ -202,6 +228,10 @@ const Provider = ({ children }) => {
         isLoaded,
         getTrans,
         transactionList,
+        setupObject,
+        setSetupObject,
+        handleChangeEdit,
+        editUser,
       }}
     >
       {children}
