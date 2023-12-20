@@ -21,7 +21,7 @@ const RecordsMenu = ({
   };
   return (
     <>
-      <section className="bg-white rounded-2xl w-1/3 max-w-md border-[1px] h-full px-5 py-8">
+      <section className="bg-white rounded-2xl w-1/3 max-w-md border-[1px] h-full px-5 py-8 ">
         <h3 className="font-medium mb-5 text-3xl">Records</h3>
         <button
           onClick={() => {
@@ -55,7 +55,10 @@ const RecordsMenu = ({
             {isLoaded &&
               categoryArr?.map((category) => {
                 return (
-                  <div className="flex items-center justify-between my-5">
+                  <div
+                    key={category.id}
+                    className="flex items-center justify-between my-5"
+                  >
                     <div className="flex gap-3">
                       <button className="text-2xl">
                         <MdRemoveRedEye color="gray" />

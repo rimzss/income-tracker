@@ -29,7 +29,7 @@ const Records = ({ open, setOpen }) => {
 
   const [categoryOpen, setCategoryOpen] = useState(false);
   return (
-    <main className="bg-base w-screen">
+    <main className="bg-base w-screen min-h-screen">
       <Nav open={open} setOpen={setOpen} />
       <article className="px-20 py-5 flex gap-10">
         <RecordsMenu

@@ -13,7 +13,7 @@ import { testContext } from "@/context/Provider";
 import { transContext } from "@/context/TransProvider";
 
 export default function Home({ open, setOpen }) {
-  const { userName, userId } = useContext(testContext);
+  const { userName, userId, isLogout } = useContext(testContext);
   const { sumTransGet, sumTrans } = useContext(transContext);
   const router = useRouter();
 
@@ -21,7 +21,11 @@ export default function Home({ open, setOpen }) {
     if (userName === "") {
       router.push("./login");
     }
-  }, []);
+    if (userName === null) {
+      router.push("./login");
+    }
+  }, [userName]);
+
   if (userName === "") {
     return null;
   }

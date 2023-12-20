@@ -17,6 +17,7 @@ const ModalExpense = ({
     handleChangeRecords,
     transactionRecord,
     setTransactionRecord,
+    updateCash,
   } = useContext(transContext);
   return (
     <section className={`flex ${showExpense}`}>
@@ -67,7 +68,7 @@ const ModalExpense = ({
             {categoryArr &&
               categoryArr.map((category) => {
                 return (
-                  <li className="w-full p-5 text-lg">
+                  <li key={category.id} className="w-full p-5 text-lg">
                     <a
                       onClick={() => {
                         transactionRecord.category_id = category.id;
@@ -85,6 +86,8 @@ const ModalExpense = ({
           <div className="w-1/2">
             <h3>Date</h3>
             <input
+              name="updated_at"
+              onChange={handleChangeRecords}
               type="date"
               className="input input-bordered w-full bg-base mt-3"
             />
@@ -100,6 +103,7 @@ const ModalExpense = ({
         <button
           onClick={() => {
             addRecord();
+            updateCash();
             setOpen(false);
           }}
           className="btn rounded-3xl w-full bg-second text-white mt-8"

@@ -19,7 +19,10 @@ const Chart2 = () => {
         <div className="w-full h-full flex flex-col gap-4">
           {mockDataChart.map((data) => {
             return (
-              <div className="flex items-center gap-3 -ml-15">
+              <div
+                key={data.category}
+                className="flex items-center gap-3 -ml-15"
+              >
                 <div className={`w-5 h-5 rounded-full ${data.color}`}></div>
                 <h4>{data.category}</h4>
                 <span className="">{data.amount}</span>

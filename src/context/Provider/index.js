@@ -5,7 +5,7 @@ export const testContext = createContext();
 
 const Provider = ({ children }) => {
   // =========SAVE USER INFO=========
-  const [userName, setUserName] = useState("");
+  let [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
   const [userCash, setUserCash] = useState(0);
   const [userType, setUserType] = useState("");
@@ -23,6 +23,10 @@ const Provider = ({ children }) => {
   const handleChange = (e) => {
     console.log("WRITING", e.target.name, e.target.value);
     setLoginTry({ ...loginTry, [e.target.name]: e.target.value });
+  };
+  const [isLogout, setIsLogout] = useState(false);
+  const logout = () => {
+    setUserName(null);
   };
 
   const goDashboard = async () => {
@@ -121,6 +125,8 @@ const Provider = ({ children }) => {
         goSetup,
         userId,
         userCash,
+        logout,
+        setUserCash,
       }}
     >
       {children}

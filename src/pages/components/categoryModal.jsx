@@ -7,11 +7,14 @@ import { GoHomeFill } from "react-icons/go";
 import { FaHome } from "react-icons/fa";
 import { FaClipboardUser } from "react-icons/fa6";
 import { FaClipboardList } from "react-icons/fa";
-import { PiLadderBold } from "react-icons/pi";
 import { FaCaretDown } from "react-icons/fa";
 import { RiNetflixFill } from "react-icons/ri";
 import { IoFastFood } from "react-icons/io5";
 import { testContext } from "@/context/Provider";
+import { IoCart } from "react-icons/io5";
+import { FaCar } from "react-icons/fa";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { FaGift } from "react-icons/fa6";
 
 const CategoryModal = ({
   categoryOpen,
@@ -25,9 +28,12 @@ const CategoryModal = ({
     { icon: <FaHome />, name: "home2" },
     { icon: <FaClipboardUser />, name: "clipboardUser" },
     { icon: <FaClipboardList />, name: "clipboardList" },
-    { icon: <PiLadderBold />, name: "ladder" },
+    { icon: <FaMoneyBillWave />, name: "money" },
     { icon: <RiNetflixFill />, name: "netflix" },
     { icon: <IoFastFood />, name: "fastfood" },
+    { icon: <IoCart />, name: "cart" },
+    { icon: <FaCar />, name: "car" },
+    { icon: <FaGift />, name: "gift" },
   ];
   const colors = [
     "bg-second",
@@ -112,6 +118,7 @@ const CategoryModal = ({
                 {icons.map((icon) => {
                   return (
                     <div
+                      key={icon.name}
                       onClick={() => {
                         setDisplayIcon(icon.icon);
                         handleIcon(icon.name);
@@ -126,6 +133,7 @@ const CategoryModal = ({
                   {colors.map((color) => {
                     return (
                       <div
+                        key={color}
                         onClick={() => handleColor(color)}
                         className={`w-8 h-8 rounded-full ${color}`}
                       ></div>

@@ -1,4 +1,5 @@
 import { testContext } from "@/context/Provider";
+import { transContext } from "@/context/TransProvider";
 import React, { useContext } from "react";
 
 const ModalIncome = ({
@@ -12,7 +13,8 @@ const ModalIncome = ({
     handleChangeRecords,
     transactionRecord,
     setTransactionRecord,
-  } = useContext(testContext);
+    updateCash,
+  } = useContext(transContext);
   return (
     <section className={`flex ${showIncome}`}>
       <div className="w-1/2 p-5">
@@ -21,6 +23,7 @@ const ModalIncome = ({
             onClick={() => {
               setShowExpense("");
               setShowIncome("hidden");
+              transactionRecord.transaction_type = "EXP";
             }}
             className="btn w-1/2 rounded-3xl hover:bg-second hover:text-white"
           >
@@ -52,7 +55,7 @@ const ModalIncome = ({
             {categoryArr &&
               categoryArr.map((category) => {
                 return (
-                  <li className="w-full p-5 text-lg">
+                  <li key={category.id} className="w-full p-5 text-lg">
                     <a
                       onClick={() => {
                         console.log("SELECTED CATEGORY", category.id);
@@ -86,6 +89,7 @@ const ModalIncome = ({
         <button
           onClick={() => {
             addRecord();
+            updateCash();
           }}
           className="btn rounded-3xl w-full bg-green-500 text-white mt-8"
         >
