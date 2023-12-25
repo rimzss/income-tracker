@@ -13,10 +13,6 @@ const RecordList = () => {
 
   const { transactionList, getTrans, transRefresh } = useContext(transContext);
 
-  useEffect(() => {
-    getTrans();
-  }, [transRefresh]);
-
   const handleChange = (event) => {
     setFilterStyle(event.target.value);
   };

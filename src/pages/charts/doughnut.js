@@ -1,15 +1,35 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Chart } from "chart.js";
+import { transContext } from "@/context/TransProvider";
 function Doughnut() {
+  const { catSum, catSums } = useContext(transContext);
+  const [data, setData] = useState([]);
+  const [nameData, setNameData] = useState([]);
+
+  useEffect(() => {
+    catSum();
+  }, []);
+
+  useEffect(() => {
+    if (catSums) {
+      catSums.map((e) => {
+        data.push(e.sum);
+        nameData.push(e.name);
+      });
+      console.log("PIE CHART DATA", data);
+    }
+    setData(data);
+    setNameData(nameData);
+  }, [catSums]);
   useEffect(() => {
     var ctx = document.getElementById("myChart1").getContext("2d");
     var myChart = new Chart(ctx, {
       type: "doughnut",
       data: {
-        labels: ["Bills", "Food", "Shopping", "Insurance", "Clothing"],
+        labels: nameData,
         datasets: [
           {
-            data: [15, 15, 15, 15, 15],
+            data: data,
             borderColor: [
               "rgb(28, 100, 242",
               "rgb(231, 70, 148)",

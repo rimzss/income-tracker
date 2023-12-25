@@ -44,6 +44,7 @@ const TransProvider = ({ children }) => {
   };
 
   let [transactionList, setTransactionList] = useState();
+  let [transactionListLimit, setTransactionListLimit] = useState();
   const getTrans = async () => {
     try {
       const { transactionss } = await fetch(
@@ -69,7 +70,7 @@ const TransProvider = ({ children }) => {
           body: JSON.stringify({ userId }),
         }
       ).then((res) => res.json());
-      setTransactionList(transactionss.reverse());
+      setTransactionListLimit(transactionss.reverse());
     } catch (error) {
       console.log(error);
     }
@@ -78,29 +79,48 @@ const TransProvider = ({ children }) => {
   const [sumTrans, setSumTrans] = useState([]);
   const sumTransGet = async () => {
     try {
-      const { sum } = await fetch("http://localhost:8008/api/transaction/sum", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId }),
-      }).then((res) => res.json());
-      setSumTrans(sum);
-      console.log("SUMMMM", sum);
+      const { data } = await fetch(
+        "http://localhost:8008/api/transaction/sum/" + userId
+      ).then((res) => res.json());
+      setSumTrans(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updateCash = async () => {
+  // const updateCash = async () => {
+  //   try {
+  //     const { updatedValue } = await fetch(
+  //       "http://localhost:8008/api/transaction/sum",
+  //       {
+  //         method: "PUT",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ userId, userCash }),
+  //       }
+  //     ).then((res) => res.json());
+  //     setUserCash(updatedValue);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  const [monthSums, setMonthSum] = useState();
+  const monthSum = async () => {
     try {
-      const { updatedValue } = await fetch(
-        "http://localhost:8008/api/transaction/sum",
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userId, userCash }),
-        }
+      const { data } = await fetch(
+        "http://localhost:8008/api/transaction/monthsum/" + userId
       ).then((res) => res.json());
-      setUserCash(updatedValue);
+      setMonthSum(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const [catSums, setCatSums] = useState();
+  const catSum = async () => {
+    try {
+      const { sum } = await fetch(
+        "http://localhost:8008/api/transaction/catsum/" + userId
+      ).then((res) => res.json());
+      setCatSums(sum);
     } catch (error) {
       console.log(error);
     }
@@ -119,7 +139,12 @@ const TransProvider = ({ children }) => {
         sumTrans,
         transRefresh,
         getTransLimit,
-        updateCash,
+        // updateCash,
+        transactionListLimit,
+        monthSum,
+        monthSums,
+        catSums,
+        catSum,
       }}
     >
       {children}

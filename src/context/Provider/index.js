@@ -8,7 +8,6 @@ const Provider = ({ children }) => {
   let [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
   const [userCash, setUserCash] = useState(0);
-  const [userType, setUserType] = useState("");
 
   // =========LOGIN FUNCTION=========
   const router = useRouter();
@@ -24,7 +23,6 @@ const Provider = ({ children }) => {
     console.log("WRITING", e.target.name, e.target.value);
     setLoginTry({ ...loginTry, [e.target.name]: e.target.value });
   };
-  const [isLogout, setIsLogout] = useState(false);
   const logout = () => {
     setUserName(null);
   };
