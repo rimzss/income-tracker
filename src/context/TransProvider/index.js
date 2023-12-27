@@ -107,10 +107,11 @@ const TransProvider = ({ children }) => {
   const [isMonthDone, setIsMonthDone] = useState(false);
   const monthSum = async () => {
     try {
-      const { data } = await fetch(
+      const { sum } = await fetch(
         "http://localhost:8008/api/transaction/monthsum/" + userId
       ).then((res) => res.json());
-      setMonthSum(data);
+      setMonthSum(sum);
+      console.log("MONTH SUM DATA", sum);
     } catch (error) {
       console.log(error);
     } finally {

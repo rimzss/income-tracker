@@ -83,7 +83,7 @@ const monthSum = async (req, res) => {
     const exp = sum.filter((el) => el.transaction_type === "EXP")[0];
     const inc = sum.filter((el) => el.transaction_type === "INC")[0];
 
-    res.status(201).json({ message: "success", data: { exp, inc } });
+    res.status(201).json({ message: "success", sum });
   } catch (error) {
     console.log(error);
   }

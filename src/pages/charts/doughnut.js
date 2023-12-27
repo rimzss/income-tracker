@@ -8,7 +8,6 @@ function Doughnut() {
 
   useEffect(() => {
     catSum();
-    console.log("BAR DATA CHART", catSums);
   }, []);
 
   useEffect(() => {

@@ -8,14 +8,14 @@ function FilledChart() {
   const [monthSumsInc, setMonthSumsInc] = useState([]);
   const [monthSumsExp, setMonthSumsExp] = useState([]);
 
-  useEffect(() => {
-    if (monthSums) {
-      months.push(monthSums.exp.sar);
-      monthSumsExp.push(monthSums.exp.sum);
-      monthSumsInc.push(monthSums.inc.sum);
-      console.log("BAR CHART DATA", months, monthSumsInc, monthSumsExp);
-    }
-  }, [monthSums]);
+  // useEffect(() => {
+  // //   if (monthSums) {
+  // //     months.push(monthSums.exp.sar);
+  // //     monthSumsExp.push(monthSums.exp.sum);
+  // //     monthSumsInc.push(monthSums.inc.sum);
+  // //     console.log("BAR CHART DATA", monthSums);
+  // //   }
+  // // }, [monthSums]);
 
   useEffect(() => {
     let options = {
