@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FilledChart from "../charts/filledlinechart";
+import { transContext } from "@/context/TransProvider";
 
 const Chart1 = () => {
   return (

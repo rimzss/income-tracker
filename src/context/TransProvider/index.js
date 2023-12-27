@@ -55,7 +55,7 @@ const TransProvider = ({ children }) => {
           body: JSON.stringify({ userId }),
         }
       ).then((res) => res.json());
-      setTransactionList(transactionss.reverse());
+      setTransactionList(transactionss);
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +104,7 @@ const TransProvider = ({ children }) => {
   //   }
   // };
   const [monthSums, setMonthSum] = useState();
+  const [isMonthDone, setIsMonthDone] = useState(false);
   const monthSum = async () => {
     try {
       const { data } = await fetch(
@@ -112,6 +113,8 @@ const TransProvider = ({ children }) => {
       setMonthSum(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsMonthDone(!isMonthDone);
     }
   };
   const [catSums, setCatSums] = useState();

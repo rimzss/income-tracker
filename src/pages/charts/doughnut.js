@@ -8,19 +8,21 @@ function Doughnut() {
 
   useEffect(() => {
     catSum();
+    console.log("BAR DATA CHART", catSums);
   }, []);
 
   useEffect(() => {
     if (catSums) {
-      catSums.map((e) => {
-        data.push(e.sum);
-        nameData.push(e.name);
-      });
-      console.log("PIE CHART DATA", data);
+      setData(
+        catSums.map((e) => {
+          console.log(e.sum);
+          return e.sum;
+        })
+      );
+      setNameData(catSums.map((e) => e.name));
     }
-    setData(data);
-    setNameData(nameData);
   }, [catSums]);
+
   useEffect(() => {
     var ctx = document.getElementById("myChart1").getContext("2d");
     var myChart = new Chart(ctx, {
@@ -63,7 +65,7 @@ function Doughnut() {
         },
       },
     });
-  }, []);
+  }, [catSums]);
 
   return (
     <>

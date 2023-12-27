@@ -16,6 +16,10 @@ const RecordList = () => {
   const handleChange = (event) => {
     setFilterStyle(event.target.value);
   };
+
+  useEffect(() => {
+    getTrans();
+  }, [transRefresh]);
   return (
     <div className="w-2/3">
       <div className=" flex justify-between">

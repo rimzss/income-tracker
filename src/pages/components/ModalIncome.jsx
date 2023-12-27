@@ -89,7 +89,7 @@ const ModalIncome = ({
         <button
           onClick={() => {
             addRecord();
-            updateCash();
+            // updateCash();
           }}
           className="btn rounded-3xl w-full bg-green-500 text-white mt-8"
         >

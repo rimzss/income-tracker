@@ -3,13 +3,10 @@ import { Chart } from "chart.js";
 import { timeRelativer } from "@/utils/dateFormat";
 import { transContext } from "@/context/TransProvider";
 function FilledChart() {
-  const { transactionList, monthSum, monthSums } = useContext(transContext);
+  const { monthSums, isMonthDone } = useContext(transContext);
   const [months, setMonths] = useState([]);
   const [monthSumsInc, setMonthSumsInc] = useState([]);
   const [monthSumsExp, setMonthSumsExp] = useState([]);
-  useEffect(() => {
-    monthSum();
-  }, []);
 
   useEffect(() => {
     if (monthSums) {
@@ -17,7 +14,6 @@ function FilledChart() {
       monthSumsExp.push(monthSums.exp.sum);
       monthSumsInc.push(monthSums.inc.sum);
       console.log("BAR CHART DATA", months, monthSumsInc, monthSumsExp);
-      return;
     }
   }, [monthSums]);
 

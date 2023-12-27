@@ -20,6 +20,7 @@ export default function Home({ open, setOpen }) {
     getTrans,
     transactionList,
     transactionRefresh,
+    monthSum,
   } = useContext(transContext);
   const router = useRouter();
 
@@ -38,7 +39,7 @@ export default function Home({ open, setOpen }) {
 
   useEffect(() => {
     sumTransGet();
-    getTrans();
+    monthSum();
   }, [transactionRefresh]);
   return (
     <main className="bg-base w-screen lg:h-screen">

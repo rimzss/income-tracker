@@ -103,7 +103,7 @@ const ModalExpense = ({
         <button
           onClick={() => {
             addRecord();
-            updateCash();
+            // updateCash();
             setOpen(false);
           }}
           className="btn rounded-3xl w-full bg-second text-white mt-8"

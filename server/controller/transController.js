@@ -1,5 +1,6 @@
 const { data } = require("autoprefixer");
 const { sql } = require("../config/pgDb");
+const { useState } = require("react");
 
 const createTrans = async (req, res) => {
   try {
@@ -25,7 +26,7 @@ const getTrans = async (req, res) => {
   try {
     const { userId } = req.body;
     const transactionss =
-      await sql`SELECT * FROM category INNER JOIN transaction ON category.id = transaction.category_id WHERE category.user_id=${userId}`;
+      await sql`SELECT * FROM category INNER JOIN transaction ON category.id = transaction.category_id WHERE category.user_id=${userId} ORDER BY transaction.createdAt desc`;
     res.status(201).json({ message: "success", transactionss });
   } catch (error) {
     console.log("GET TRANS FAILED", error);
@@ -92,13 +93,14 @@ const catSum = async (req, res) => {
   try {
     const { userId } = req.params;
     const sum =
-      await sql`SELECT ct.name ,SUM(amount) FROM transaction as tr INNER JOIN category as ct ON tr.category_id=ct.id WHERE tr.user_id=${userId} GROUP BY tr.category_id, ct.name`;
+      await sql`SELECT ct.name , ct.categorycolor ,SUM(amount) FROM transaction as tr INNER JOIN category as ct ON tr.category_id=ct.id WHERE tr.user_id=${userId} GROUP BY tr.category_id, ct.name, ct.categorycolor`;
 
     res.status(201).json({ message: "success", sum });
   } catch (error) {
     console.log(error);
   }
 };
+
 module.exports = {
   createTrans,
   getTrans,
