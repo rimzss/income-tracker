@@ -1,12 +1,12 @@
 import { transContext } from "@/context/TransProvider";
 import React, { useContext, useEffect } from "react";
 import { getIcon } from "@/utils/getIcon";
-import { timeRelativer } from "@/utils/dateFormat";
+import { dateFormatter } from "@/utils/dateFormat";
 
 import { GoHomeFill } from "react-icons/go";
 
 const LastRecords = () => {
-  const { getTransLimit, transactionList } = useContext(transContext);
+  const { getTransLimit, transactionListLimit } = useContext(transContext);
   useEffect(() => {
     getTransLimit();
   }, []);
@@ -16,8 +16,7 @@ const LastRecords = () => {
         <span>Last Records</span>
       </div>
       <div className="p-5">
-        {transactionList?.map((record) => {
-          console.log(record);
+        {transactionListLimit?.map((record) => {
           return (
             <section className="mb-5 border-b-[1px] pb-5 flex justify-between items-center">
               <div className="flex gap-3">
@@ -29,7 +28,7 @@ const LastRecords = () => {
                 <div>
                   <h4>{record.name}</h4>
                   <p className="font-light">
-                    {timeRelativer(record.createdAt)}
+                    {dateFormatter(record.createdAt)}
                   </p>
                 </div>
               </div>

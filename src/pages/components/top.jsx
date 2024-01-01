@@ -60,10 +60,8 @@ const Top = () => {
           <span>Your Income</span>
         </div>
         <div className="p-5 flex lg:block justify-between">
-          <div className="tooltip" data-tip={sumTrans[0]?.sum}>
-            <h2 className="text-5xl font-medium truncate">
-              {sumTrans[0]?.sum}
-            </h2>
+          <div className="tooltip" data-tip={sumTrans?.inc}>
+            <h2 className="text-5xl font-medium truncate">{sumTrans?.inc}</h2>
           </div>
 
           <p className="font-light text-gray-400 lg:my-5">Your Income Amount</p>
@@ -98,10 +96,8 @@ const Top = () => {
           <span>Total Expenses</span>
         </div>
         <div className="p-5 flex lg:block justify-between">
-          <div className="tooltip" data-tip={sumTrans[1]?.sum}>
-            <h2 className="text-5xl font-medium truncate">
-              -{sumTrans[1]?.sum}
-            </h2>
+          <div className="tooltip" data-tip={sumTrans.exp}>
+            <h2 className="text-5xl font-medium truncate">-{sumTrans?.exp}</h2>
           </div>
           <p className="font-light text-gray-400 my-5">Your Expense Amount</p>
           <div className="flex items-center gap-2 text-lg">

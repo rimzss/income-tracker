@@ -1,15 +1,36 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Chart } from "chart.js";
+import { transContext } from "@/context/TransProvider";
 function Doughnut() {
+  const { catSum, catSums } = useContext(transContext);
+  const [data, setData] = useState([]);
+  const [nameData, setNameData] = useState([]);
+
+  useEffect(() => {
+    catSum();
+  }, []);
+
+  useEffect(() => {
+    if (catSums) {
+      setData(
+        catSums.map((e) => {
+          console.log(e.sum);
+          return e.sum;
+        })
+      );
+      setNameData(catSums.map((e) => e.name));
+    }
+  }, [catSums]);
+
   useEffect(() => {
     var ctx = document.getElementById("myChart1").getContext("2d");
     var myChart = new Chart(ctx, {
       type: "doughnut",
       data: {
-        labels: ["Bills", "Food", "Shopping", "Insurance", "Clothing"],
+        labels: nameData,
         datasets: [
           {
-            data: [15, 15, 15, 15, 15],
+            data: data,
             borderColor: [
               "rgb(28, 100, 242",
               "rgb(231, 70, 148)",
@@ -43,7 +64,7 @@ function Doughnut() {
         },
       },
     });
-  }, []);
+  }, [catSums]);
 
   return (
     <>

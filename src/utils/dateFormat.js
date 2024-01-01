@@ -1,7 +1,7 @@
 import moment from "moment";
 
 export const timeRelativer = (date) => {
-  const formatedDate = moment(date).calendar();
+  const formatedDate = moment(date).format("MMMM");
   return formatedDate;
 };
 

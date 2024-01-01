@@ -14,7 +14,14 @@ import { transContext } from "@/context/TransProvider";
 
 export default function Home({ open, setOpen }) {
   const { userName, userId, isLogout } = useContext(testContext);
-  const { sumTransGet } = useContext(transContext);
+  const {
+    sumTransGet,
+    sumTrans,
+    getTrans,
+    transactionList,
+    transactionRefresh,
+    monthSum,
+  } = useContext(transContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -32,7 +39,8 @@ export default function Home({ open, setOpen }) {
 
   useEffect(() => {
     sumTransGet();
-  }, []);
+    monthSum();
+  }, [transactionRefresh]);
   return (
     <main className="bg-base w-screen min-h-screen h-full">
       <Nav setOpen={setOpen} open={open} />

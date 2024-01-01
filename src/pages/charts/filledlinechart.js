@@ -1,6 +1,22 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Chart } from "chart.js";
+import { timeRelativer } from "@/utils/dateFormat";
+import { transContext } from "@/context/TransProvider";
 function FilledChart() {
+  const { monthSums, isMonthDone } = useContext(transContext);
+  const [months, setMonths] = useState([]);
+  const [monthSumsInc, setMonthSumsInc] = useState([]);
+  const [monthSumsExp, setMonthSumsExp] = useState([]);
+
+  // useEffect(() => {
+  // //   if (monthSums) {
+  // //     months.push(monthSums.exp.sar);
+  // //     monthSumsExp.push(monthSums.exp.sum);
+  // //     monthSumsInc.push(monthSums.inc.sum);
+  // //     console.log("BAR CHART DATA", monthSums);
+  // //   }
+  // // }, [monthSums]);
+
   useEffect(() => {
     let options = {
       legend: {
@@ -10,9 +26,9 @@ function FilledChart() {
         yAxes: [
           {
             ticks: {
-              max: 3000000,
+              max: monthSums?.exp.sum,
               min: 0,
-              stepSize: 1000000,
+              stepSize: 5000000,
             },
           },
         ],
@@ -23,21 +39,11 @@ function FilledChart() {
       options: options,
       type: "bar",
       data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
+        labels: months,
         datasets: [
           {
             barThickness: 20,
-            data: [
-              3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000,
-            ],
+            data: monthSumsInc,
             label: "Income",
             borderColor: "rgb(132, 204, 22)",
             backgroundColor: "rgb(132, 204, 22)",
@@ -46,9 +52,7 @@ function FilledChart() {
           },
           {
             barThickness: 20,
-            data: [
-              2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000,
-            ],
+            data: monthSumsExp,
             label: "Expense",
             borderColor: "rgb(249, 115, 22)",
             backgroundColor: "rgb(249, 115, 22)",
