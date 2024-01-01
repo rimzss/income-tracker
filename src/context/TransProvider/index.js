@@ -4,7 +4,7 @@ import { testContext } from "../Provider";
 export const transContext = createContext();
 
 const TransProvider = ({ children }) => {
-  const { userId, userCash, setUserCash } = useContext(testContext);
+  let { userId, userCash, setUserCash } = useContext(testContext);
 
   let [transactionRecord, setTransactionRecord] = useState({
     userId: userId,
@@ -91,16 +91,23 @@ const TransProvider = ({ children }) => {
   };
 
   const updateCash = async () => {
+    console.log("UPDATE CASH REQ WORKING", userCash)
+    if(transactionRecord.transaction_type==="EXP"){
+      userCash=userCash-transactionRecord.amount
+    }else{
+      userCash=userCash+Number(transactionRecord.amount)
+    }
     try {
       const { updatedValue } = await fetch(
-        "http://localhost:8008/api/transaction/sum",
+        "http://localhost:8008/api/transaction/updateCash",
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userId, userCash }),
+          body: JSON.stringify({userCash, userId}),
         }
       ).then((res) => res.json());
-      setUserCash(updatedValue);
+      console.log("UPDATED VALUE", updatedValue[0])
+      setUserCash(updatedValue[0].value);
     } catch (error) {
       console.log(error);
     }

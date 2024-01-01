@@ -87,8 +87,8 @@ const CategoryModal = ({
   };
 
   return (
-    <dialog open={categoryOpen} className="modal z-10">
-      <div className="modal-box p-0">
+    <dialog open={categoryOpen} className="modal z-10 bg-black bg-opacity-40">
+      <div className="modal-box p-0 bg-white">
         <div className="flex justify-between border-b-[1px] p-5">
           <h3 className="text-xl font-semibold">Add Category</h3>
 

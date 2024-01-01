@@ -13,6 +13,6 @@ router.route("/transaction/create").post(createTrans);
 router.route("/transaction").post(getTrans);
 router.route("/transaction/limit").post(getTransLimit);
 router.route("/transaction/sum").post(getTransSum);
-router.route("/transaction/updateCash").post(updateCash);
+router.route("/transaction/updateCash").put(updateCash);
 
 module.exports = router;

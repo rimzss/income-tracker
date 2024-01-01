@@ -14,7 +14,7 @@ import { transContext } from "@/context/TransProvider";
 
 export default function Home({ open, setOpen }) {
   const { userName, userId, isLogout } = useContext(testContext);
-  const { sumTransGet, sumTrans } = useContext(transContext);
+  const { sumTransGet } = useContext(transContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Home({ open, setOpen }) {
     sumTransGet();
   }, []);
   return (
-    <main className="bg-base w-screen lg:h-screen">
+    <main className="bg-base w-screen min-h-screen h-full">
       <Nav setOpen={setOpen} open={open} />
       <article className="px-20 py-5">
         <Top />

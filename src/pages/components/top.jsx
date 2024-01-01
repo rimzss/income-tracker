@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Shape from "./shape";
 import Logo from "./logo";
@@ -9,6 +9,7 @@ import { transContext } from "@/context/TransProvider";
 const Top = () => {
   const { userCash } = useContext(testContext);
   const { sumTrans } = useContext(transContext);
+  useEffect(() => {}, [userCash]);
   return (
     <section className="flex flex-col lg:flex-row gap-5 items-center justify-center mt-10">
       <div className=" relative lg:w-1/3  w-full lg:h-64 rounded-2xl bg-second bg-[url('../Noise.png')] p-10 flex flex-col justify-between">

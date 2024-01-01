@@ -7,7 +7,7 @@ const Provider = ({ children }) => {
   // =========SAVE USER INFO=========
   let [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
-  const [userCash, setUserCash] = useState(0);
+  let [userCash, setUserCash] = useState(0);
   const [userType, setUserType] = useState("");
 
   // =========LOGIN FUNCTION=========

@@ -57,10 +57,11 @@ const getTransSum = async (req, res) => {
 
 const updateCash = async (req, res) => {
   try {
-    const { userId, value } = req.body;
-    console.log("UPDATE CASH WORKING", userId);
+    const { userCash, userId } = req.body;
+    console.log("UPDATE CASH WORKING CASH", userCash);
+    console.log("UPDATE CASH WORKING ID", userId);
     const updatedValue =
-      await sql`UPDATE users SET value ${value} WHERE id=${userId}`;
+      await sql`UPDATE users SET value= ${userCash} WHERE id=${userId} RETURNING *`;
     res.status(201).json({ message: "success", updatedValue });
   } catch (error) {
     console.log("update CASH FAILED", error);

@@ -17,6 +17,7 @@ const LastRecords = () => {
       </div>
       <div className="p-5">
         {transactionList?.map((record) => {
+          console.log(record);
           return (
             <section className="mb-5 border-b-[1px] pb-5 flex justify-between items-center">
               <div className="flex gap-3">

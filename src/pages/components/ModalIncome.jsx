@@ -7,6 +7,7 @@ const ModalIncome = ({
   setShowIncome,
   showIncome,
   categoryArr,
+  setOpen,
 }) => {
   const {
     addRecord,
@@ -38,7 +39,7 @@ const ModalIncome = ({
           <input
             onChange={handleChangeRecords}
             name="amount"
-            type="text"
+            type="number"
             placeholder="₮ 000.00"
             className="input input-bordered input-lg w-full bg-base pt-4"
           />
@@ -90,6 +91,7 @@ const ModalIncome = ({
           onClick={() => {
             addRecord();
             updateCash();
+            setOpen(false);
           }}
           className="btn rounded-3xl w-full bg-green-500 text-white mt-8"
         >
