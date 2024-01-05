@@ -46,6 +46,7 @@ const getTransLimit = async (req, res) => {
 const getTransSum = async (req, res) => {
   try {
     const { userId } = req.params;
+    console.log("USER ID IN SUM TRANS", userId);
     const sum =
       await sql`SELECT transaction_type, SUM(amount) FROM transaction WHERE user_id=${userId} GROUP BY transaction_type`;
     // const { exp } = data[0];
@@ -55,7 +56,7 @@ const getTransSum = async (req, res) => {
 
     res.status(201).json({ message: "success", data: { exp, inc } });
   } catch (error) {
-    console.log("GET TRANS FAILED", error);
+    console.log("GET TRANS SUM FAILED", error);
     res.status(500).json({ error });
   }
 };

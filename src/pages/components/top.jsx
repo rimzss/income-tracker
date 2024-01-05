@@ -96,7 +96,7 @@ const Top = () => {
           <span>Total Expenses</span>
         </div>
         <div className="p-5 flex lg:block justify-between">
-          <div className="tooltip" data-tip={sumTrans.exp}>
+          <div className="tooltip" data-tip={sumTrans?.exp}>
             <h2 className="text-5xl font-medium truncate">-{sumTrans?.exp}</h2>
           </div>
           <p className="font-light text-gray-400 my-5">Your Expense Amount</p>
