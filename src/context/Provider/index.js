@@ -30,13 +30,16 @@ const Provider = ({ children }) => {
 
   const goDashboard = async () => {
     try {
-      const { userInfo } = await fetch("http://localhost:8008/auth/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginTry),
-      }).then((res) => res.json());
+      const { userInfo } = await fetch(
+        "https://geld-navy.vercel.app/auth/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginTry),
+        }
+      ).then((res) => res.json());
       setUserName(userInfo[0].name);
       setUserId(userInfo[0].id);
       setUserCash(userInfo[0].value);

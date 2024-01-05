@@ -12,11 +12,14 @@ const CatProvider = ({ children }) => {
 
   const getCategorys = async () => {
     try {
-      const { categorys } = await fetch("http://localhost:8008/api/category", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId }),
-      }).then((res) => res.json());
+      const { categorys } = await fetch(
+        "https://geld-navy.vercel.app/api/category",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId }),
+        }
+      ).then((res) => res.json());
       setCategoryArr(categorys);
     } catch (error) {
       console.log(error);

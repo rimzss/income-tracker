@@ -27,7 +27,7 @@ const TransProvider = ({ children }) => {
     transactionRecord.userId = userId;
     try {
       const { message } = await fetch(
-        "http://localhost:8008/api/transaction/create",
+        "https://geld-navy.vercel.app/api/transaction/create",
 
         {
           method: "POST",
@@ -48,7 +48,7 @@ const TransProvider = ({ children }) => {
   const getTrans = async () => {
     try {
       const { transactionss } = await fetch(
-        "http://localhost:8008/api/transaction",
+        "https://geld-navy.vercel.app/api/transaction",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -63,7 +63,7 @@ const TransProvider = ({ children }) => {
   const getTransLimit = async () => {
     try {
       const { transactionss } = await fetch(
-        "http://localhost:8008/api/transaction/limit",
+        "https://geld-navy.vercel.app/api/transaction/limit",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -80,7 +80,7 @@ const TransProvider = ({ children }) => {
   const sumTransGet = async () => {
     try {
       const { data } = await fetch(
-        "http://localhost:8008/api/transaction/sum/" + userId
+        "https://geld-navy.vercel.app/api/transaction/sum/" + userId
       ).then((res) => res.json());
       setSumTrans(data);
     } catch (error) {
@@ -89,22 +89,22 @@ const TransProvider = ({ children }) => {
   };
 
   const updateCash = async () => {
-    console.log("UPDATE CASH REQ WORKING", userCash)
-    if(transactionRecord.transaction_type==="EXP"){
-      userCash=userCash-transactionRecord.amount
-    }else{
-      userCash=userCash+Number(transactionRecord.amount)
+    console.log("UPDATE CASH REQ WORKING", userCash);
+    if (transactionRecord.transaction_type === "EXP") {
+      userCash = userCash - transactionRecord.amount;
+    } else {
+      userCash = userCash + Number(transactionRecord.amount);
     }
     try {
       const { updatedValue } = await fetch(
-        "http://localhost:8008/api/transaction/updateCash",
+        "https://geld-navy.vercel.app/api/transaction/updateCash",
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({userCash, userId}),
+          body: JSON.stringify({ userCash, userId }),
         }
       ).then((res) => res.json());
-      console.log("UPDATED VALUE", updatedValue[0])
+      console.log("UPDATED VALUE", updatedValue[0]);
       setUserCash(updatedValue[0].value);
     } catch (error) {
       console.log(error);
@@ -115,7 +115,7 @@ const TransProvider = ({ children }) => {
   const monthSum = async () => {
     try {
       const { sum } = await fetch(
-        "http://localhost:8008/api/transaction/monthsum/" + userId
+        "https://geld-navy.vercel.app/api/transaction/monthsum/" + userId
       ).then((res) => res.json());
       setMonthSum(sum);
       console.log("MONTH SUM DATA", sum);
@@ -129,7 +129,7 @@ const TransProvider = ({ children }) => {
   const catSum = async () => {
     try {
       const { sum } = await fetch(
-        "http://localhost:8008/api/transaction/catsum/" + userId
+        "https://geld-navy.vercel.app/api/transaction/catsum/" + userId
       ).then((res) => res.json());
       setCatSums(sum);
     } catch (error) {

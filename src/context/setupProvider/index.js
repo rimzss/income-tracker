@@ -18,7 +18,7 @@ const SetupProvider = ({ children }) => {
     try {
       console.log(setupObject);
       const { message } = await fetch(
-        "http://localhost:8008/auth/users/edit/",
+        "https://geld-navy.vercel.app/auth/users/edit/",
         {
           method: "PUT",
           headers: {
