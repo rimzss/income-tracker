@@ -7,6 +7,7 @@ import { PiForkKnifeFill } from "react-icons/pi";
 import { transContext } from "@/context/TransProvider";
 import { getIcon } from "@/utils/getIcon";
 import { dateFormatter } from "@/utils/dateFormat";
+import { getCurryncySymbol } from "@/utils/currencySymbol";
 
 const RecordList = () => {
   const [filterStyle, setFilterStyle] = React.useState("");
@@ -80,7 +81,7 @@ const RecordList = () => {
                     }
                   >
                     {record.transaction_type === "EXP" ? "-" : "+"}
-                    {record.amount}₮
+                    {record.amount} {getCurryncySymbol(record.currency_type)}
                   </p>
                 </div>
               </div>

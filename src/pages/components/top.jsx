@@ -5,9 +5,10 @@ import Logo from "./logo";
 import LogoWhite from "./LogoWhite";
 import { testContext } from "@/context/Provider";
 import { transContext } from "@/context/TransProvider";
+import { getCurryncySymbol } from "@/utils/currencySymbol";
 
 const Top = () => {
-  const { userCash } = useContext(testContext);
+  const { userCash, userUnit } = useContext(testContext);
   const { sumTrans } = useContext(transContext);
   useEffect(() => {}, [userCash]);
   return (
@@ -17,7 +18,9 @@ const Top = () => {
         <div className="flex justify-between items-center">
           <div>
             <p className=" text-gray-400 text-xl">cash</p>
-            <p className="font-medium text-3xl text-white">{userCash}</p>
+            <p className="font-medium text-3xl text-white">
+              {userCash} {getCurryncySymbol(userUnit)}
+            </p>
           </div>
 
           <svg
@@ -61,7 +64,10 @@ const Top = () => {
         </div>
         <div className="p-5 flex lg:block justify-between">
           <div className="tooltip" data-tip={sumTrans?.inc}>
-            <h2 className="text-5xl font-medium truncate">{sumTrans?.inc}</h2>
+            <h2 className="text-5xl font-medium truncate">
+              {sumTrans?.inc}
+              {getCurryncySymbol(userUnit)}
+            </h2>
           </div>
 
           <p className="font-light text-gray-400 lg:my-5">Your Income Amount</p>

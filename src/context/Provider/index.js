@@ -31,6 +31,7 @@ const Provider = ({ children }) => {
     setIsLoading("hidden");
     setUserCash(0);
     setOpacity("");
+    router.push("/login");
   };
 
   const goDashboard = async () => {

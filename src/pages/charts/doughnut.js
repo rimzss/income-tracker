@@ -5,11 +5,11 @@ function Doughnut() {
   const { catSum, catSums } = useContext(transContext);
   const [data, setData] = useState([]);
   const [nameData, setNameData] = useState([]);
+  const [colorData, setColorData] = useState([]);
 
   useEffect(() => {
     catSum();
   }, []);
-
   useEffect(() => {
     if (catSums) {
       setData(
@@ -18,6 +18,32 @@ function Doughnut() {
         })
       );
       setNameData(catSums.map((e) => e.name));
+      setColorData(
+        catSums.map((e) => {
+          switch (e.categorycolor) {
+            case "bg-second":
+              return "#0166FF";
+              break;
+            case "bg-red-500":
+              return "#ef4444";
+              break;
+            case "bg-green-500":
+              return "#22c55e";
+              break;
+            case "bg-purple-500":
+              return "#a855f7";
+              break;
+            case "bg-yellow-500":
+              return "#eab308";
+              break;
+            case "bg-orange-500":
+              return "#f97316";
+              break;
+            default:
+              break;
+          }
+        })
+      );
     }
   }, [catSums]);
 
@@ -30,20 +56,8 @@ function Doughnut() {
         datasets: [
           {
             data: data,
-            borderColor: [
-              "rgb(28, 100, 242",
-              "rgb(231, 70, 148)",
-              "rgba(253, 186, 140, 1)",
-              "rgba(22, 189, 202, 1)",
-              "rgba(242, 144, 28, 1)",
-            ],
-            backgroundColor: [
-              "rgb(28, 100, 242",
-              "rgb(231, 70, 148)",
-              "rgba(253, 186, 140, 1)",
-              "rgba(22, 189, 202, 1)",
-              "rgba(242, 144, 28, 1)",
-            ],
+            borderColor: colorData,
+            backgroundColor: colorData,
           },
         ],
       },

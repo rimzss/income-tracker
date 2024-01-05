@@ -49,8 +49,8 @@ const getTransSum = async (req, res) => {
     console.log("USER ID IN SUM TRANS", userId);
     const sum =
       await sql`SELECT transaction_type, SUM(amount) FROM transaction WHERE user_id=${userId} GROUP BY transaction_type`;
-    const exp = await sum.filter((el) => el.transaction_type === "EXP")[0].sum;
-    const inc = await sum.filter((el) => el.transaction_type === "INC")[0].sum;
+    const exp = sum?.filter((el) => el.transaction_type === "EXP")[0].sum;
+    const inc = sum?.filter((el) => el.transaction_type === "INC")[0].sum;
     res.status(201).json({ message: "success", data: { exp, inc } });
   } catch (error) {
     console.log("GET TRANS SUM FAILED", error);
