@@ -4,7 +4,7 @@ import { testContext } from "../Provider";
 export const transContext = createContext();
 
 const TransProvider = ({ children }) => {
-  let { userId, userCash, setUserCash } = useContext(testContext);
+  let { userId, userCash, setUserCash, userUnit } = useContext(testContext);
 
   let [transactionRecord, setTransactionRecord] = useState({
     userId: userId,
@@ -25,6 +25,7 @@ const TransProvider = ({ children }) => {
   const [transRefresh, setTransRefresh] = useState(false);
   const addRecord = async () => {
     transactionRecord.userId = userId;
+    transactionRecord.currency_type = userUnit;
     try {
       const { message } = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}api/transaction/create`,

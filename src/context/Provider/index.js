@@ -8,7 +8,7 @@ const Provider = ({ children }) => {
   let [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
   let [userCash, setUserCash] = useState(0);
-  const [userType, setUserType] = useState("");
+  const [userUnit, setUserUnit] = useState("");
 
   // =========LOGIN FUNCTION=========
   const router = useRouter();
@@ -30,6 +30,7 @@ const Provider = ({ children }) => {
     setTrans("");
     setIsLoading("hidden");
     setUserCash(0);
+    setOpacity("");
   };
 
   const goDashboard = async () => {
@@ -47,6 +48,7 @@ const Provider = ({ children }) => {
       setUserName(userInfo[0].name);
       setUserId(userInfo[0].id);
       setUserCash(userInfo[0].value);
+      setUserUnit(userInfo[0].unit);
     } catch (error) {
       console.log(error);
     }
@@ -134,6 +136,7 @@ const Provider = ({ children }) => {
         userCash,
         logout,
         setUserCash,
+        userUnit,
       }}
     >
       {children}
