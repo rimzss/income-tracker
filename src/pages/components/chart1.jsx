@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import FilledChart from "../charts/filledlinechart";
 import { transContext } from "@/context/TransProvider";
+import SimpleBar from "../charts/simplebar";
 
 const Chart1 = () => {
   const { monthSum } = useContext(transContext);
@@ -9,7 +10,7 @@ const Chart1 = () => {
       <div className="flex items-center gap-2 font-bold p-4 border-b-[1px]">
         <span>Income - Expense</span>
       </div>
-      {/* <div className="p-5 h-1/3">{monthSum ? <SimpleBar /> : ""}</div> */}
+      <div className="p-5 h-1/3">{monthSum ? <SimpleBar /> : ""}</div>
     </div>
   );
 };

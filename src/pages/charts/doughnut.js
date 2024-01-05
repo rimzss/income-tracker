@@ -14,7 +14,6 @@ function Doughnut() {
     if (catSums) {
       setData(
         catSums.map((e) => {
-          console.log(e.sum);
           return e.sum;
         })
       );
