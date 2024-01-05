@@ -31,7 +31,7 @@ const Provider = ({ children }) => {
   const goDashboard = async () => {
     try {
       const { userInfo } = await fetch(
-        "https://geld-navy.vercel.app/auth/users",
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/users`,
         {
           method: "POST",
           headers: {
@@ -53,7 +53,7 @@ const Provider = ({ children }) => {
   const getLoginInfo = async () => {
     try {
       const { message } = await fetch(
-        "http://localhost:8008/auth/users/signin/",
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/users/signin/`,
         {
           method: "POST",
           headers: {
@@ -92,13 +92,16 @@ const Provider = ({ children }) => {
   };
   const addUser = async () => {
     try {
-      const { id } = await fetch("http://localhost:8008/auth/users/signup/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signUpData),
-      }).then((res) => res.json());
+      const { id } = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/users/signup/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signUpData),
+        }
+      ).then((res) => res.json());
       console.log("ID!!!!!", id);
       setUserId(id);
       goSetup();

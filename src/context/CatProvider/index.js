@@ -13,7 +13,7 @@ const CatProvider = ({ children }) => {
   const getCategorys = async () => {
     try {
       const { categorys } = await fetch(
-        "https://geld-navy.vercel.app/api/category",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/category`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

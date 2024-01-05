@@ -27,7 +27,7 @@ const TransProvider = ({ children }) => {
     transactionRecord.userId = userId;
     try {
       const { message } = await fetch(
-        "https://geld-navy.vercel.app/api/transaction/create",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/transaction/create`,
 
         {
           method: "POST",
@@ -48,7 +48,7 @@ const TransProvider = ({ children }) => {
   const getTrans = async () => {
     try {
       const { transactionss } = await fetch(
-        "https://geld-navy.vercel.app/api/transaction",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/transaction`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -80,7 +80,7 @@ const TransProvider = ({ children }) => {
   const sumTransGet = async () => {
     try {
       const { data } = await fetch(
-        "https://geld-navy.vercel.app/api/transaction/sum/" + userId
+        `${process.env.NEXT_PUBLIC_API_URL}/api/transaction/sum/` + userId
       ).then((res) => res.json());
       setSumTrans(data);
     } catch (error) {
@@ -97,7 +97,7 @@ const TransProvider = ({ children }) => {
     }
     try {
       const { updatedValue } = await fetch(
-        "https://geld-navy.vercel.app/api/transaction/updateCash",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/transaction/updateCash`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -115,7 +115,7 @@ const TransProvider = ({ children }) => {
   const monthSum = async () => {
     try {
       const { sum } = await fetch(
-        "https://geld-navy.vercel.app/api/transaction/monthsum/" + userId
+        `${process.env.NEXT_PUBLIC_API_URL}/api/transaction/monthsum/` + userId
       ).then((res) => res.json());
       setMonthSum(sum);
       console.log("MONTH SUM DATA", sum);
@@ -129,7 +129,7 @@ const TransProvider = ({ children }) => {
   const catSum = async () => {
     try {
       const { sum } = await fetch(
-        "https://geld-navy.vercel.app/api/transaction/catsum/" + userId
+        `${process.env.NEXT_PUBLIC_API_URL}/api/transaction/catsum/` + userId
       ).then((res) => res.json());
       setCatSums(sum);
     } catch (error) {
