@@ -31,7 +31,7 @@ const Provider = ({ children }) => {
   const goDashboard = async () => {
     try {
       const { userInfo } = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/users`,
+        `${process.env.NEXT_PUBLIC_API_URL}auth/users`,
         {
           method: "POST",
           headers: {
@@ -53,7 +53,7 @@ const Provider = ({ children }) => {
   const getLoginInfo = async () => {
     try {
       const { message } = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/users/signin/`,
+        `${process.env.NEXT_PUBLIC_API_URL}auth/users/signin/`,
         {
           method: "POST",
           headers: {
@@ -93,7 +93,7 @@ const Provider = ({ children }) => {
   const addUser = async () => {
     try {
       const { id } = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/users/signup/`,
+        `${process.env.NEXT_PUBLIC_API_URL}auth/users/signup/`,
         {
           method: "POST",
           headers: {

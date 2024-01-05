@@ -18,7 +18,7 @@ const SetupProvider = ({ children }) => {
     try {
       console.log(setupObject);
       const { message } = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/users/edit/`,
+        `${process.env.NEXT_PUBLIC_API_URL}auth/users/edit/`,
         {
           method: "PUT",
           headers: {
