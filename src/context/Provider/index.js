@@ -21,11 +21,15 @@ const Provider = ({ children }) => {
   const [trans, setTrans] = useState("");
   const [isLoading, setIsLoading] = useState("hidden");
   const handleChange = (e) => {
-    console.log("WRITING", e.target.name, e.target.value);
     setLoginTry({ ...loginTry, [e.target.name]: e.target.value });
   };
   const logout = () => {
     setUserName(null);
+    setUserId(null);
+    setWarningMessage("");
+    setTrans("");
+    setIsLoading("hidden");
+    setUserCash(0);
   };
 
   const goDashboard = async () => {
@@ -102,7 +106,6 @@ const Provider = ({ children }) => {
           body: JSON.stringify(signUpData),
         }
       ).then((res) => res.json());
-      console.log("ID!!!!!", id);
       setUserId(id);
       goSetup();
     } catch (error) {
@@ -111,7 +114,6 @@ const Provider = ({ children }) => {
   };
 
   const handleChangeSignUp = (e) => {
-    console.log("INPUTING", e.target.value);
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
   return (

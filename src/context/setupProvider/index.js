@@ -8,7 +8,6 @@ const SetupProvider = ({ children }) => {
 
   let [setupObject, setSetupObject] = useState({ unit: "", value: "", id: "" });
   const handleChangeEdit = (e) => {
-    console.log(e.target.value);
     setSetupObject({ ...setupObject, [e.target.name]: e.target.value });
   };
 

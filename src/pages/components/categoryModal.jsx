@@ -71,7 +71,7 @@ const CategoryModal = ({
   const createCategory = async () => {
     try {
       const { message } = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/category/create`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/category/create`,
         {
           method: "POST",
           headers: {

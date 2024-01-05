@@ -104,7 +104,6 @@ const TransProvider = ({ children }) => {
           body: JSON.stringify({ userCash, userId }),
         }
       ).then((res) => res.json());
-      console.log("UPDATED VALUE", updatedValue[0]);
       setUserCash(updatedValue[0].value);
     } catch (error) {
       console.log(error);
@@ -118,7 +117,6 @@ const TransProvider = ({ children }) => {
         `${process.env.NEXT_PUBLIC_API_URL}api/transaction/monthsum/` + userId
       ).then((res) => res.json());
       setMonthSum(sum);
-      console.log("MONTH SUM DATA", sum);
     } catch (error) {
       console.log(error);
     } finally {
