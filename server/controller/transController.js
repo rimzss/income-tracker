@@ -1,6 +1,4 @@
-const { data } = require("autoprefixer");
 const { sql } = require("../config/pgDb");
-const { useState } = require("react");
 
 const createTrans = async (req, res) => {
   try {
